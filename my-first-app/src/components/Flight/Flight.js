@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './Flight.css';
 
 const Flight = (props) => {

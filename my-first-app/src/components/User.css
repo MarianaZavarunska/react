@@ -1,0 +1,16 @@
+.users-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-container{
+    max-width: 250px;
+    width: 100%;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px;
+}
+
+.user-container > div{
+    margin: 10px;
+}

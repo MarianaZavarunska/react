@@ -1,12 +1,29 @@
-.main{
-  display: flex;
-}
-.users-wrapper, 
-.posts-wrapper,
-.footer{
-  border: 1px solid black;
+form{
+ display: flex;
+ flex-wrap: wrap;
+ align-items: center;
 }
 
-.footer{
-  padding: 3px;
+form > div{
+ padding: 10px;
+}
+
+label{
+  font-size: 1.2rem;
+}
+
+input{
+  /* max-width: 200px; 
+  width: 100%; */
+  font-size: 1.2rem;
+}
+
+.btn-find{
+  width: 120px;
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+  background-color: rgb(226, 68, 68);
+  border-color: rgb(226, 68, 68);
+  border-radius: 3px;
+  color: #fff;
 }

@@ -4,7 +4,9 @@ import {useEffect, useState} from 'react';
 import Posts from '../Posts/Posts';
 import UserDetails from '../UserDetails/User.details';
 import User from './User';
-import "./Users.css"
+import "./Users.css";
+import'../UserDetails/UserDetails.css';
+import {services} from "../../services/services";
 
 
 const Users = () => {
@@ -13,8 +15,7 @@ const Users = () => {
     const [userId, setUserId] = useState(null)
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
+        services.getAllUsers()
         .then(users => setUsers(users))
     }, [])
 
@@ -27,11 +28,14 @@ const Users = () => {
     }
 
     return (
-        <div className='users-container'>
+        <div >
+            <div className='container'>
             {user && <UserDetails key={user.id}  userDetail={user} getUserId={getUserId}/> } 
-        
-            {users.map( user => <User key={user.id} user={user} getUser={getUser}/> )}
             
+            <div className='users-container'> {users.map( user => <User key={user.id} user={user} getUser={getUser}/> )}</div>
+            
+            </div>
+           
             <Posts userId={userId}/>
             
         </div>

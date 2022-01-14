@@ -4,7 +4,7 @@ import '../UserDetails/UserDetails.css'
 
 const User = ({user,getUser}) => {
     const {id, name} = user;
-    // const [userDetail, setUserDetail] = useState(null)
+    
     return (
         <div className='user-container'>
             <div>{id}. {name}</div>

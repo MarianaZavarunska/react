@@ -2,7 +2,7 @@ import React from 'react';
 
 const Post = ({post:{userId, id,title, body}}) => {
     return (
-        <div>
+        <div className='post-container'>
             <div>userId: {userId} </div>
             <div>Id: {id} </div>
             <div>title: {title} </div>

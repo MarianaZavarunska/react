@@ -1,19 +1,20 @@
 import React from 'react';
 
 import "../Posts/Posts";
+import'./UserDetails.css'
 
 
 const UserDetails = ({userDetail,getUserId}) => {
-   const {id,name,surname,email,address:{street,suite,city,zipcode,geo:{lat,lng}},phone,website,company:{companyName,catchPhrase,bs}} = userDetail;
+   const {id,name,username,email, address:{street,suite,city,zipcode, geo:{lat,lng}},phone,website,company:{companyName,catchPhrase,bs}} = userDetail;
 
     
     return (
         
-        <div className='user-detail-container'>
+        <div className='user-details-container'>
            
             <div>Id: {id}</div>
-            <div>Name:{name}</div>
-            <div>Surname: {surname}</div>
+            <div>Name: {name}</div>
+            <div>Username: {username}</div>
             <div>Email: {email}</div>
             <div>
                 Address:
@@ -28,7 +29,7 @@ const UserDetails = ({userDetail,getUserId}) => {
                 </div>
 
                 <div>Phone: {phone}</div>
-                <div>Website:{website}</div>
+                <div>Website: {website}</div>
 
                 <div>Company:
                     <div>Name: {companyName}</div>

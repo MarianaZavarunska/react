@@ -3,22 +3,24 @@
 .btn-posts{
     display: block;
     background-color: rgb(242, 57, 57);
+    color: #fff;
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 10px;
     margin-left: 20px;
 }
 
-.user-detail-container{
+.user-details-container{
    display: flex;
    flex-direction: column;
-   position: absolute;
-   right: 5%;
+   justify-content: space-between;
+   order: 2;
+   font-size: 1.2rem;
    border: 1px solid black;
 }
-.user-detail-container > div,
-.user-detail-container > div > div,
-.user-detail-container > div > div > div{
+.user-details-container > div,
+.user-details-container > div > div,
+.user-details-container > div > div > div{
     border: 1px solid black;
     padding: 5px;
     margin: 10px;

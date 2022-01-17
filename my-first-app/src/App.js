@@ -3,18 +3,17 @@ import "./App.css";
 import Form from "./components/Form";
 import Users from "./components/Users";
 import { useState, useEffect } from "react";
+import { services } from "./services/services";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFiltered] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((users) => {
-        setUsers(users);
-        setFiltered(users);
-      });
+    services.getAllUsers().then((users) => {
+      setUsers(users);
+      setFiltered(users);
+    });
   }, []);
 
   const getFiltered = (data) => {

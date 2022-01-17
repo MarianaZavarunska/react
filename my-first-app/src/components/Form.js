@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useState } from "react";
-import "./User.css";
+import "../App.css";
 
 const Form = ({ getFiltered }) => {
   const [form, setForm] = useState({ name: "", username: "", email: "" });
 
   const sendValue = (e) => {
     e.preventDefault();
-    getFiltered({ ...form, [e.target.name]: e.target.value });
+    getFiltered(form);
   };
 
   const getFormValue = (e) => {

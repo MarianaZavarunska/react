@@ -1,12 +1,17 @@
-.main{
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.components-container {
   display: flex;
 }
-.users-wrapper, 
+.users-wrapper,
 .posts-wrapper,
-.footer{
+.footer {
   border: 1px solid black;
 }
 
-.footer{
+.footer {
   padding: 3px;
 }

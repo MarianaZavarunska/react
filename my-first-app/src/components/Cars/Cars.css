@@ -1,0 +1,26 @@
+.cars-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.car-container {
+  width: 200px;
+  border: 1px solid black;
+  box-shadow: 0 5px 7px black;
+  padding: 10px;
+}
+.car-container > div {
+  letter-spacing: 1px;
+  line-height: 25px;
+  margin: 7px;
+}
+
+.btn-delete {
+  text-align: right;
+}
+.btn-delete > button {
+  background-color: red;
+  letter-spacing: 1px;
+  padding: 5px;
+}

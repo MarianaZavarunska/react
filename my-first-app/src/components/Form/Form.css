@@ -1,0 +1,30 @@
+.form-container {
+  width: 300px;
+  border: 1px solid black;
+  margin: 10px 3px;
+}
+
+form > div {
+  font-size: 1.3rem;
+  padding: 10px;
+}
+
+form > div > label > input {
+  font-size: 1.5rem;
+}
+
+form > div > button {
+  background-color: red;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  padding: 8px;
+}
+.btn {
+  text-align: right;
+}
+
+.error-container {
+  font-size: 0.9rem;
+  color: red;
+  padding: 3px;
+}

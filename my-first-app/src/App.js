@@ -1,23 +1,26 @@
 import "./App.css";
-import Users from "./components/Users/Users";
-import Posts from "./components/Posts/Posts";
-import Comments from './components/Comments/Comments';
+import { Link, Route, Routes } from "react-router-dom";
+
+import Users from "./pages/Users";
+import Posts from "./pages/Posts";
 
 function App() {
   return (
     <div>
-      <div className="main">
-      <div className="users-wrapper"><Users /></div>
-      <div className="posts-wrapper"><Posts /></div>
+      <div className="menu-container">
+        <div>
+          <Link to={"/users"}>Users</Link>
+        </div>
+        <div>
+          <Link to={"/posts"}>Posts</Link>
+        </div>
       </div>
-      <div className="footer">
-        <Comments/>
-      </div>
-   
-    
+      <Routes>
+        <Route path={"/users"} element={<Users />}></Route>
+        <Route path={"/posts"} element={<Posts />}></Route>
+      </Routes>
     </div>
-  )
-  
+  );
 }
 
 export default App;

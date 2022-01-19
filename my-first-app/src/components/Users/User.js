@@ -1,14 +1,17 @@
 import React from "react";
-import './User.css';
+
+import { Link } from "react-router-dom";
 
 const User = (props) => {
-  const { id, name, email } = props;
+  const { id, name } = props;
   return (
-    <div className="user-container">
-       <h3>{id}. {name} </h3>
-      <p>Email: {email}</p>
+    <div>
+      <h3>
+        {id}. {name}
+        <Link to={id + ""}></Link>
+      </h3>
     </div>
-  )
+  );
 };
 
 export default User;

@@ -1,12 +1,19 @@
-.main{
+.menu-container {
   display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: black;
+  gap: 20px;
 }
-.users-wrapper, 
-.posts-wrapper,
-.footer{
-  border: 1px solid black;
+.menu-container > div {
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 10px;
 }
 
-.footer{
-  padding: 3px;
+.menu-container > div > a {
+  color: #fff;
+  text-decoration: none;
 }

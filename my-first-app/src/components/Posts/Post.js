@@ -1,15 +1,16 @@
-import React from 'react';
-import './Post.css';
+import React from "react";
 
-const Post = (props) => {
-    const {userId,id,title,body} = props;
-    return (
-        <div className='post-container'>
-            <h3>{userId} - {id}</h3> 
-            <h3> {title}</h3>
-            {body}
-        </div>
-    );
+const Post = ({ post }) => {
+  const { userId, id, title } = post;
+  return (
+    <div>
+      <div> userId: {userId}</div>
+      <div>Id: {id}</div>
+      <div> Name: {title}</div>
+
+      <hr />
+    </div>
+  );
 };
 
 export default Post;

@@ -1,0 +1,9 @@
+.users-container {
+  width: 50%;
+}
+
+.user-container {
+  position: absolute;
+  top: 20%;
+  right: 5%;
+}

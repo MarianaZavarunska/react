@@ -7,4 +7,8 @@ export default function Service(endpoint) {
     fetch(`https://jsonplaceholder.typicode.com/${endpoint}/${id}`).then(
       (response) => response.json()
     );
+  this.getAllPosts = (id) =>
+    fetch(`https://jsonplaceholder.typicode.com/${endpoint}/${id}/users`).then(
+      (response) => response.json()
+    );
 }

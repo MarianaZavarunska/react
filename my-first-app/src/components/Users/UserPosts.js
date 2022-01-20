@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 
-import Service from "../../services/service";
-import Post from "../Posts/Post";
-
-const UserPosts = () => {
-  const [posts, setPosts] = useState([]);
-  const { id } = useParams();
-  console.log();
-
-  useEffect(() => {
-    let postsService = new Service("users");
-
-    postsService.getAllPosts(id).then((response) => setPosts([...response]));
-  }, [id]);
-
+const UserPosts = ({ post }) => {
+  const { userId, id, title, body } = post;
   return (
     <div>
-      {posts && posts.map((post) => <Post key={post.id} post={post} />)}
+      <div> userId: {userId}</div>
+      <div>Id: {id}</div>
+      <div> Title: {title}</div>
+      <div> Body: {body}</div>
     </div>
   );
 };

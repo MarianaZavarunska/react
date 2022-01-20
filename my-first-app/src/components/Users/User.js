@@ -1,4 +1,5 @@
 import React from "react";
+import "./Users.css";
 
 const User = ({ user }) => {
   const {
@@ -19,7 +20,7 @@ const User = ({ user }) => {
   } = user;
 
   return (
-    <div>
+    <div className="user-details-container">
       <div>Id: {id}</div>
       <div>Name: {name}</div>
       <div>Username: {username}</div>

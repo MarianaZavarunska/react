@@ -1,3 +1,77 @@
 .posts-container {
-  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.posts-title-container {
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.posts-title-container > h2 {
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 10px;
+}
+.posts-title-context {
+  height: 400px;
+  padding: 10px;
+  margin: 10px;
+  overflow-y: auto;
+}
+.posts-title-context > a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #000;
+}
+.posts-title-context > a[class="active"] {
+  color: red;
+}
+
+.post-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex-basis: 50%;
+}
+.post-details {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  justify-self: center;
+  padding: 10px;
+}
+.post-details > div {
+  margin-bottom: 10px;
+}
+.post-details > div > div {
+  font-size: 1.2rem;
+  padding: 10px;
+}
+.post-details > a {
+  align-self: flex-end;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: red;
+  color: #fff;
+  padding: 7px;
+}
+
+.post-comments-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-height: 300px;
+  height: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  overflow-y: auto;
+}
+
+.post-comments-container > div {
+  max-width: 300px;
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px;
 }

@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-import Service from "../../services/service";
-import "../../components/Users/Users.css";
-import UserPosts from "../../components/Users/UserPosts";
+import usersService from "../../services/users.service";
 
 const UserPostsPage = () => {
-  const [posts, setPosts] = useState([]);
   const { id } = useParams();
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    let postsService = new Service("users");
-
-    postsService.getAllPosts(id).then((response) => setPosts([...response]));
+    usersService.getUserPosts(id).then((response) => setPosts([...response]));
   }, [id]);
-
   return (
     <div className="user-posts-container">
-      {posts && posts.map((post) => <UserPosts key={post.id} post={post} />)}
+      {posts &&
+        posts.map((post) => (
+          <div key={post.id}>
+            {post.id}. {post.title}
+          </div>
+        ))}
     </div>
   );
 };

@@ -1,3 +1,44 @@
-.menu-container > div > a[class="active"] {
+body{
+  height: 100%;
+  margin: 0;
+}
+
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  background-color: black;
+  gap: 20px;
+
+}
+.header > div {
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 10px;
+}
+
+.header > div > a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header > div > a.active {
   color: red;
+}
+.main{
+  height: calc(100vh - 80px);
+  overflow: hidden;
+  overflow-y: auto;
+}
+.footer{
+  min-height: 30px;
+  background-color: #000;
+  color: #fff;
+  text-align: right;
+  padding: 10px;
+
 }

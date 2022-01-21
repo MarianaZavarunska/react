@@ -21,11 +21,16 @@ const Users = () => {
         <h2>Push on the user to get details</h2>
         <div className="users-title-context">
           {users.map((user) => (
-            <NavLink key={user.id} to={user.id.toString()} state={user}>
-              <div>
+            <div>
+              <NavLink key={user.id} to={user.id.toString()} state={user}>
                 {user.id}. {user.name}
-              </div>
-            </NavLink>
+              </NavLink>
+              <span>
+                <NavLink key={user.id} to={`${user.id}/albums`}>
+                  Get Albums
+                </NavLink>
+              </span>
+            </div>
           ))}
         </div>
       </div>

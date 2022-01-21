@@ -6,7 +6,7 @@ import "./Layout.css";
 const Layout = () => {
   return (
     <div>
-      <div className="menu-container">
+      <div className="header">
         <div>
           <NavLink NavLink to={"users"}>
             Users
@@ -16,8 +16,11 @@ const Layout = () => {
           <NavLink to={"posts"}>Posts</NavLink>
         </div>
       </div>
-      <div>
+      <div className="main">
         <Outlet />
+      </div>
+      <div className="footer">
+        <span>@M.Zavarunska</span>
       </div>
     </div>
   );

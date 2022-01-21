@@ -15,4 +15,12 @@ export default function Service(endpoint) {
     fetch(
       `https://jsonplaceholder.typicode.com/${endpoint}/${id}/comments`
     ).then((response) => response.json());
+  this.getAllAlbums = (id) =>
+    fetch(`https://jsonplaceholder.typicode.com/${endpoint}/${id}/albums`).then(
+      (response) => response.json()
+    );
+  this.getAllPhotos = (albumsId) =>
+    fetch(
+      `https://jsonplaceholder.typicode.com/albums/${albumsId}/${endpoint}`
+    ).then((response) => response.json());
 }

@@ -1,23 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import carsService from "../../services/cars.service";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { carValidator } from "../../validators/car.validator";
 import "./Form.css";
+import axiosService from "../../services/axios.service";
 
-const Form = ({ onUpdateCars }) => {
+const Form = ({ onUpdateCars, editedCar }) => {
+  const { id, model, year, price } = editedCar;
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({ resolver: joiResolver(carValidator), mode: "onTouched" });
 
   const onSubmitCar = (car) => {
-    carsService.create(car).then((response) => {
-      onUpdateCars(response);
-    });
+    if (id) {
+      carsService
+        .updateById(id, car)
+        .then((response) => onUpdateCars(response));
+    } else {
+      carsService.create(car).then((response) => {
+        onUpdateCars(response);
+      });
+    }
   };
+
+  useEffect(() => {
+    setValue("model", model);
+    setValue("year", year);
+    setValue("price", price);
+  }, [id]);
 
   return (
     <div className="form-container">
@@ -51,7 +66,7 @@ const Form = ({ onUpdateCars }) => {
           )}
         </div>
         <div>
-          <button className="btn">Create</button>
+          <button className="btn">{id ? "Update" : "Create"}</button>
         </div>
       </form>
     </div>

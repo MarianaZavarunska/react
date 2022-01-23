@@ -4,7 +4,7 @@ import carsService from "../../services/cars.service";
 import Car from "./Car";
 import "./Cars.css";
 
-const Cars = ({ newCar }) => {
+const Cars = ({ newCar, setEditedCar }) => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,12 @@ const Cars = ({ newCar }) => {
   return (
     <div className="cars-container">
       {cars.map((car) => (
-        <Car key={car.id} car={car} onDelete={onDelete} />
+        <Car
+          key={car.id}
+          car={car}
+          onDelete={onDelete}
+          setEditedCar={setEditedCar}
+        />
       ))}
     </div>
   );

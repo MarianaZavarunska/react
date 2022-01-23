@@ -2,7 +2,8 @@ import React from "react";
 
 import "./Cars.css";
 
-const Car = ({ onDelete, car: { id, model, price, year } }) => {
+const Car = ({ onDelete, car, setEditedCar }) => {
+  const { id, model, price, year } = car;
   return (
     <div className="car-container">
       <div>Id: {id}</div>
@@ -10,6 +11,13 @@ const Car = ({ onDelete, car: { id, model, price, year } }) => {
       <div>Year: {year}</div>
       <div>Price: {price}</div>
       <div className="btn-delete">
+        <button
+          onClick={() => {
+            setEditedCar(car);
+          }}
+        >
+          Update
+        </button>
         <button
           onClick={() => {
             onDelete(id);

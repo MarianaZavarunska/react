@@ -1,12 +1,8 @@
-const baseURL = "https://loremflickr.com/480/320";
+const baseURL = "https://rickandmortyapi.com/api";
 
 export default baseURL;
 
 export const urls = {
-  dog: "/dog",
-  cat: "/cat",
-  boy: "/boy",
-  nature: "/nature",
-  notebook: "/notebook",
-  house: "/house",
+  episodes: "/episode",
+  character: "/character",
 };

@@ -1,23 +1,17 @@
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Layout from "./components/Layout/Layout";
+import EpisodePage from "./pages/EpisodePage";
 
 function App() {
-  let nameButtons = ["dog", "cat", "boy", "nature", "notebook", "house"];
-  const [btnName, setBtnName] = useState("dog");
-
   return (
     <div>
-      <div className="btn-container">
-        {nameButtons &&
-          nameButtons.map((btn) => (
-            <button key={btn} onClick={() => setBtnName(btn)}>
-              {btn}
-            </button>
-          ))}
-      </div>
-      <div>{btnName && <Layout btnName={btnName} />}</div>
+      <Routes>
+        <Route path={"/"} element={<Layout />}>
+          <Route path={"episode"} element={<EpisodePage />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

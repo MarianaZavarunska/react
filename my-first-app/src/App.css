@@ -1,11 +1,4 @@
-.btn-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-button{
-  width: 200px;
-  padding: 10px;
-  margin: 10px;
+body{
+  padding: 0;
+  margin: 0;
 }

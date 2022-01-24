@@ -8,17 +8,10 @@ const Layout = ({ btnName }) => {
   useEffect(() => {
     switch (btnName) {
       case "dog":
-        picturesService
-          .getDog()
-          .then((response) => {
-            console.log(response);
-          })
-          .catch(err) => {
-            if (typeof error.response === 'undefined') {
-                window.location = 'https://login.microsoftonline.com'
-              } else {
-                  console.log(response)
-          }
+        picturesService.getDog().then((response) => {
+          console.log(response);
+        });
+
         break;
       case "cat":
         picturesService.getCat().then((response) => console.log(response));

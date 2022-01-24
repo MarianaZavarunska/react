@@ -8,7 +8,7 @@ function App() {
   const [btnName, setBtnName] = useState("dog");
 
   return (
-    <div>
+    <div className="container">
       <div className="btn-container">
         {nameButtons &&
           nameButtons.map((btn) => (
@@ -17,7 +17,9 @@ function App() {
             </button>
           ))}
       </div>
-      <div>{btnName && <Layout btnName={btnName} />}</div>
+      <div className="img-container">
+        {btnName && <Layout btnName={btnName} />}
+      </div>
     </div>
   );
 }

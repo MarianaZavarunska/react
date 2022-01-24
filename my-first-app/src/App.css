@@ -1,3 +1,8 @@
+.container{
+  display: flex;
+ justify-content: space-around;
+ margin-top: 20px;
+}
 .btn-container{
   display: flex;
   flex-direction: column;
@@ -6,6 +11,19 @@
 
 button{
   width: 200px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   padding: 10px;
   margin: 10px;
+}
+.img-container {
+  align-self: center;
+}
+
+.img-container > div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }

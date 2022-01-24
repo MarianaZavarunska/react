@@ -3,16 +3,28 @@ import axiosService from "./axios.service";
 import { urls } from "../configs/urls";
 
 export const picturesService = {
-  getDog: () => axiosService.get(urls.dog).then((response) => response.date),
+  getDog: () =>
+    axiosService
+      .get(urls.dog, { responseType: "blob" })
+      .then((response) => response.data),
   getCat: () =>
     axiosService
-      .get(urls.cat, { maxRedirects: 0 })
-      .then((response) => response.date),
-  getBoy: () => axiosService.get(urls.boy).then((response) => response.date),
+      .get(urls.cat, { responseType: "blob" })
+      .then((response) => response.data),
+  getBoy: () =>
+    axiosService
+      .get(urls.boy, { responseType: "blob" })
+      .then((response) => response.data),
   getNature: () =>
-    axiosService.get(urls.nature).then((response) => response.date),
+    axiosService
+      .get(urls.nature, { responseType: "blob" })
+      .then((response) => response.data),
   getNotebook: () =>
-    axiosService.get(urls.notebook).then((response) => response.date),
+    axiosService
+      .get(urls.notebook, { responseType: "blob" })
+      .then((response) => response.data),
   getHouse: () =>
-    axiosService.get(urls.house).then((response) => response.date),
+    axiosService
+      .get(urls.house, { responseType: "blob" })
+      .then((response) => response.data),
 };

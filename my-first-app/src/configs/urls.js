@@ -1,4 +1,4 @@
-const baseURL = "https://loremflickr.com/480/320";
+const baseURL = "https://loremflickr.com/720/640";
 
 export default baseURL;
 

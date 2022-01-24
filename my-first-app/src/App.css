@@ -1,12 +1,11 @@
-.main{
+.btn-container{
   display: flex;
-}
-.users-wrapper, 
-.posts-wrapper,
-.footer{
-  border: 1px solid black;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.footer{
-  padding: 3px;
+button{
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
 }

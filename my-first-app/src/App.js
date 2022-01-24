@@ -1,7 +1,25 @@
+import { useState } from "react";
+
 import "./App.css";
+import Layout from "./components/Layout/Layout";
 
 function App() {
-  return <div></div>;
+  let nameButtons = ["dog", "cat", "boy", "nature", "notebook", "house"];
+  const [btnName, setBtnName] = useState("dog");
+
+  return (
+    <div>
+      <div className="btn-container">
+        {nameButtons &&
+          nameButtons.map((btn) => (
+            <button key={btn} onClick={() => setBtnName(btn)}>
+              {btn}
+            </button>
+          ))}
+      </div>
+      <div>{btnName && <Layout btnName={btnName} />}</div>
+    </div>
+  );
 }
 
 export default App;

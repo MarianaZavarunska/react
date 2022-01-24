@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Layout from "./components/Layout/Layout";
+import CharacterPage from "./pages/CharacterPage";
 import EpisodePage from "./pages/EpisodePage";
 
 function App() {
@@ -9,7 +10,9 @@ function App() {
     <div>
       <Routes>
         <Route path={"/"} element={<Layout />}>
-          <Route path={"episode"} element={<EpisodePage />} />
+          <Route path={"episode"} element={<EpisodePage />}>
+            <Route path={":id/character"} element={<CharacterPage />} />
+          </Route>
         </Route>
       </Routes>
     </div>

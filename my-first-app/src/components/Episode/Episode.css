@@ -1,0 +1,26 @@
+.episode-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    height: 150px;
+    border: 1px solid green;
+    box-shadow: 0 2px 5px green;
+    padding: 10px;
+    margin: 10px;
+   
+}
+
+.episode-container > div:first-child{
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.episode-container > a{
+ width: 50%;
+ text-align: center;
+ text-decoration: none;
+ background-color: green;
+ color: #fff;
+ padding: 5px;
+}

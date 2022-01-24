@@ -1,0 +1,35 @@
+.title-container{
+  text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 10px 0;
+    
+}
+
+.episodes-container{
+  position: relative;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+margin: 0 5% ;
+
+}
+
+.btn-navigation{
+  position: absolute;
+  top: -40px;
+  left: 0;
+}
+.btn-navigation > button {
+  width: 100px;
+  font-size: 1.2rem;
+  background-color: green;
+  color: #fff;
+  padding: 5px 10px;
+  margin: 0 10px 10px;
+}
+
+

@@ -1,17 +1,12 @@
-import { useState } from "react";
-
 import "./App.css";
 import Form from "./components/Form/Form";
-import Cars from "./components/Cars/Cars";
+import Form2 from "./components/Form/Form2";
 
 function App() {
-  const [newCar, setNewCar] = useState(null);
-  const [editedCar, setEditedCar] = useState({});
-
   return (
     <div>
-      <Form onUpdateCars={setNewCar} editedCar={editedCar} />
-      <Cars newCar={newCar} setEditedCar={setEditedCar} />
+      <Form />
+      <Form2 />
     </div>
   );
 }

@@ -4,25 +4,24 @@ import { useLocation, useParams } from "react-router-dom";
 import cartoonService from "../services/cartoon.service";
 
 const CharacterPage = () => {
-  const [characters, setCharacter] = useState([]);
-  const { id } = useParams();
+  const [characters, setCharacters] = useState(null);
+  const { state } = useLocation();
+  console.log(state);
 
-  const location = useLocation();
-  console.log(location);
-  // useEffect(() => {
-  //   cartoonService
-  //     .getAllCharacters(id)
-  //     .then((response) => setCharacter([...response]));
-  // }, [id]);
+  useEffect(() => {
+    cartoonService
+      .getAllCharacters(state)
+      .then((response) => setCharacters([...response]));
+  }, [state]);
 
   return (
     <div>
       {" "}
       CharacterPage
-      {/* {characters &&
+      {characters &&
         characters.map((character) => (
           <p key={character.id}>{character.name}</p>
-        ))} */}
+        ))}
     </div>
   );
 };

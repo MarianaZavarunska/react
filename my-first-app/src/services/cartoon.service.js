@@ -6,8 +6,10 @@ const cartoonService = {
     axiosService
       .get(`${urls.episodes}?page=${page}`)
       .then((response) => response.data),
-  getAllCharacters: () =>
-    axiosService.get("urls.character").then((response) => response.data),
+  getAllCharacters: (charactersId) =>
+    axiosService
+      .get(`${urls.character}/[${charactersId}]`)
+      .then((response) => response.data),
 };
 
 export default cartoonService;

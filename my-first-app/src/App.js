@@ -10,9 +10,8 @@ function App() {
     <div>
       <Routes>
         <Route path={"/"} element={<Layout />}>
-          <Route path={"episode"} element={<EpisodePage />}>
-            <Route path={":id/character"} element={<CharacterPage />} />
-          </Route>
+          <Route path={"episode"} element={<EpisodePage />} />
+          <Route path={"character"} element={<CharacterPage />} />
         </Route>
       </Routes>
     </div>

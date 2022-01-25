@@ -44,7 +44,6 @@ const EpisodePage = () => {
           </button>
         </div>
       </div>
-      <Outlet />
     </div>
   );
 };

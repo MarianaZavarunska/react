@@ -16,7 +16,7 @@
     font-weight: 600;
     letter-spacing: 1px;
 }
-.episode-container > a{
+.episode-container > button{
  width: 50%;
  text-align: center;
  text-decoration: none;

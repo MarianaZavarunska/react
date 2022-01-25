@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
+import Character from "../components/Character/Character";
 import cartoonService from "../services/cartoon.service";
+import "./Pages.css";
 
 const CharacterPage = () => {
   const [characters, setCharacters] = useState(null);
-  const { state } = useLocation();
-  console.log(state);
+  const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     cartoonService
-      .getAllCharacters(state)
+      .getAllCharacters(location.state)
       .then((response) => setCharacters([...response]));
-  }, [state]);
+  }, [location.state]);
 
   return (
-    <div>
-      {" "}
-      CharacterPage
+    <div className="characters-container">
+      <div className="characters-container-title"></div>
       {characters &&
         characters.map((character) => (
-          <p key={character.id}>{character.name}</p>
+          <Character key={character.id} character={character} />
         ))}
     </div>
   );

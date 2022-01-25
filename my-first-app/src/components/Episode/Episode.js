@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Episode.css";
 
 const Episode = ({ item }) => {
   const { id, name, episode, air_date, characters } = item;
-  console.log(id);
-  console.log(characters);
+  let navigate = useNavigate();
 
   const charactersId = [];
 
@@ -31,9 +30,21 @@ const Episode = ({ item }) => {
         <b>Air Date: </b>
         {air_date}
       </div>
-      <Link to={`${id}/character`} state={charactersId.join(",")}>
+      {/* <Link
+        to={{
+          pathname: "/character",
+          state: { array: charactersId.join(","), message: "test" },
+        }}
+      >
         Get Details
-      </Link>
+      </Link> */}
+      <button
+        onClick={() =>
+          navigate("/character", { state: charactersId.join(",") })
+        }
+      >
+        Get Details
+      </button>
     </div>
   );
 };

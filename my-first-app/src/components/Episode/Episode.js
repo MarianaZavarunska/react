@@ -4,9 +4,9 @@ import { Link, useLocation } from "react-router-dom";
 import "./Episode.css";
 
 const Episode = ({ item }) => {
-  const { name, episode, air_date } = item;
-  const location = useLocation();
-  console.log(location.pathname);
+  const { id, name, episode, air_date } = item;
+  // const location = useLocation();
+  // console.log(location.pathname);
 
   return (
     <div className="episode-container">
@@ -18,7 +18,7 @@ const Episode = ({ item }) => {
         <b>Air Date: </b>
         {air_date}
       </div>
-      {/* <Link to={"character"}>Get Details</Link> */}
+      <Link to={`${id}/character`}>Get Details</Link>
     </div>
   );
 };

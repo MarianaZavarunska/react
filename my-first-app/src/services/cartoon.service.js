@@ -7,7 +7,7 @@ const cartoonService = {
       .get(`${urls.episodes}?page=${page}`)
       .then((response) => response.data),
   getAllCharacters: () =>
-    axiosService.get(urls.character).then((response) => response.data),
+    axiosService.get("urls.character").then((response) => response.data),
 };
 
 export default cartoonService;

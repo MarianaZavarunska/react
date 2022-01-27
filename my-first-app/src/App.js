@@ -1,11 +1,10 @@
 import "./App.css";
-
-import Form from "./components/Form/Form";
+import Counter from "./components/Counter/Counter";
 
 function App() {
   return (
     <>
-      <Form />
+      <Counter />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
 import Layout from "./components/Layout/Layout";
@@ -10,6 +10,7 @@ function App() {
     <div>
       <Routes>
         <Route path={"/"} element={<Layout />}>
+          <Route index element={<Navigate to={"episode"} />} />
           <Route path={"episode"} element={<EpisodePage />} />
           <Route path={"character"} element={<CharacterPage />} />
         </Route>

@@ -30,14 +30,7 @@ const Episode = ({ item }) => {
         <b>Air Date: </b>
         {air_date}
       </div>
-      {/* <Link
-        to={{
-          pathname: "/character",
-          state: { array: charactersId.join(","), message: "test" },
-        }}
-      >
-        Get Details
-      </Link> */}
+      {/* <Link to={"/character"}>Get Details</Link> */}
       <button
         onClick={() =>
           navigate("/character", { state: charactersId.join(",") })

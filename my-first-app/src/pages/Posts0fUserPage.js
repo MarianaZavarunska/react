@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
+import Post from "../components/Post/Post";
 
 const PostsOfUserPage = () => {
   const [posts, setPosts] = useState([]);
@@ -11,7 +12,10 @@ const PostsOfUserPage = () => {
       .then((response) => setPosts([...response]));
   }, [id]);
   return (
-    <div>{posts && posts.map((post) => <p key={post.id}>{post.title}</p>)}</div>
+    <div>
+      {posts && posts.map((post) => <Post key={post.id} post={post} />)}
+      <Outlet />
+    </div>
   );
 };
 

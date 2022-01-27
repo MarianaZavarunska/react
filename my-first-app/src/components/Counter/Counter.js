@@ -71,7 +71,7 @@ const Counter = () => {
 
 export default Counter;
 
-//const reducer = (state, action) => {
+// const reducer = (state, action) => {
 //   switch (action.payload) {
 //     case 1:
 //       doAction(state, action.type, 1);
@@ -88,22 +88,22 @@ export default Counter;
 // };
 
 // const doAction = (state, action, player) => {
-//     if (action === "inc") {
-//       // state[`count_${player}`] += 1;
-//       return { ...state, [`count_${player}`]: state[`count_${player}`]++ };
-//     }
+//   if (action === "inc") {
+//     // state[`count_${player}`] += 1;
+//     return { ...state, [`count_${player}`]: state[`count_${player}`]++ };
+//   }
 
-//     if (action === "dec")
-//       //   {
-//       //     state[`count_${player}`] -= 1;
-//       //     return state;
-//       //   }
-//       return { ...state, [`count_${player}`]: state[`count_${player}`]-- };
+//   if (action === "dec")
+//     //   {
+//     //     state[`count_${player}`] -= 1;
+//     //     return state;
+//     //   }
+//     return { ...state, [`count_${player}`]: state[`count_${player}`]-- };
 
-//     if (action === "reset")
-//       //   {
-//       //     state[`count_${player}`] = 0;
-//       //     return state;
-//       //   }
-//       return { ...state, [`count_${player}`]: (state[`count_${player}`] = 0) };
-//   };
+//   if (action === "reset")
+//     //   {
+//     //     state[`count_${player}`] = 0;
+//     //     return state;
+//     //   }
+//     return { ...state, [`count_${player}`]: (state[`count_${player}`] = 0) };
+// };

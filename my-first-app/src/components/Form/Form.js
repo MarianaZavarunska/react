@@ -16,6 +16,12 @@ const Form = () => {
           return { ...state, dogs: [...state.dogs, action.payload] };
         }
         return state;
+      case "splice":
+        console.log(state);
+        state.dogs.splice(action.dogId - 1, 1);
+        console.log(state);
+        return { ...state, dogs: [...state.dogs] };
+
       default:
         return state;
     }
@@ -34,6 +40,10 @@ const Form = () => {
     dispatch({ type: "add", target: "cat", payload: newCat });
   };
 
+  const deleteItemDog = (id) => {
+    // state.dogs.splice(id - 1, 1);
+    dispatch({ type: "splice", dogId: id });
+  };
   return (
     <div className="wrapper">
       <div>
@@ -46,9 +56,24 @@ const Form = () => {
           <button onClick={addCat}>Add</button>
         </form>
       </div>
-
-      {state.cats && state.cats.map((cat) => <Cats cat={cat} />)}
-      {state.dogs && state.dogs.map((dog) => <Dogs dog={dog} />)}
+      <div>
+        {state.cats &&
+          state.cats.map((cat, index) => (
+            <Cats key={index} cat={cat} id={index + 1} />
+          ))}
+      </div>
+      <div>
+        {" "}
+        {state.dogs &&
+          state.dogs.map((dog, index) => (
+            <Dogs
+              key={index}
+              dog={dog}
+              id={index + 1}
+              deleteItemDog={deleteItemDog}
+            />
+          ))}
+      </div>
     </div>
   );
 };

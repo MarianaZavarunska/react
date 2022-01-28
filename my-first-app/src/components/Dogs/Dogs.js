@@ -1,7 +1,12 @@
 import React from "react";
 
-const Dogs = ({ dog }) => {
-  return <div>{dog}</div>;
+const Dogs = ({ dog, id, deleteItemDog }) => {
+  return (
+    <div>
+      {dog} {id}
+      <button onClick={() => deleteItemDog(id)}>Delete</button>
+    </div>
+  );
 };
 
 export default Dogs;

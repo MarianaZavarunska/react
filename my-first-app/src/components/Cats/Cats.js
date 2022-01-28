@@ -1,10 +1,12 @@
 import React from "react";
 
-const Cats = ({ cat, id }) => {
+import "./Cats.css";
+
+const Cats = ({ cat, deleteItemCat }) => {
   return (
-    <div>
-      {cat}
-      <button>Delete</button>
+    <div className="cat-wrapper">
+      <div> {cat.alias} </div>
+      <button onClick={() => deleteItemCat(cat.id)}>Delete</button>
     </div>
   );
 };

@@ -1,0 +1,17 @@
+.dog-wrapper{
+    display: flex;
+    justify-content: space-between;
+    gap:20px;
+    margin: 10px 0;
+}
+.dog-wrapper > div{
+    font-size: 1.2rem;
+}
+.dog-wrapper button{
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    background-color: red;
+    border-color: red;
+    color: #fff;
+    border-radius: 3px;
+}

@@ -1,10 +1,12 @@
 import React from "react";
 
-const Dogs = ({ dog, id, deleteItemDog }) => {
+import "./Dogs.css";
+
+const Dogs = ({ dog, deleteItemDog }) => {
   return (
-    <div>
-      {dog} {id}
-      <button onClick={() => deleteItemDog(id)}>Delete</button>
+    <div className="dog-wrapper">
+      <div>{dog.alias}</div>
+      <button onClick={() => deleteItemDog(dog.id)}>Delete</button>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import React, { useReducer, useRef } from "react";
+
 import Cats from "../Cats/Cats";
 import Dogs from "../Dogs/Dogs";
+import "./Forms.css";
 
 const Form = () => {
   const catInput = useRef();
@@ -10,24 +12,54 @@ const Form = () => {
     switch (action.type) {
       case "add":
         if (action.target === "cat") {
-          return { ...state, cats: [...state.cats, action.payload] };
+          return {
+            ...state,
+            cats: [
+              ...state.cats,
+              {
+                id: state.cats.length,
+                alias: action.payload,
+              },
+            ],
+          };
         }
         if (action.target === "dog") {
-          return { ...state, dogs: [...state.dogs, action.payload] };
+          return {
+            ...state,
+            dogs: [
+              ...state.dogs,
+              {
+                id: state.dogs.length,
+                alias: action.payload,
+              },
+            ],
+          };
         }
         return state;
-      case "splice":
-        console.log(state);
-        state.dogs.splice(action.dogId - 1, 1);
-        console.log(state);
-        return { ...state, dogs: [...state.dogs] };
+      case "filter":
+        if (action.target === "cat") {
+          return {
+            ...state,
+            cats: [...state.cats.filter((cat) => cat.id !== action.catId)],
+          };
+        }
+        if (action.target === "dog") {
+          return {
+            ...state,
+            dogs: [...state.dogs.filter((dog) => dog.id !== action.dogId)],
+          };
+        }
+        return state;
 
       default:
         return state;
     }
   };
 
-  const [state, dispatch] = useReducer(reducer, { dogs: [], cats: [] });
+  const [state, dispatch] = useReducer(reducer, {
+    dogs: [],
+    cats: [],
+  });
 
   const addDog = (e) => {
     e.preventDefault();
@@ -41,38 +73,39 @@ const Form = () => {
   };
 
   const deleteItemDog = (id) => {
-    // state.dogs.splice(id - 1, 1);
-    dispatch({ type: "splice", dogId: id });
+    dispatch({ type: "filter", target: "dog", dogId: id });
+  };
+  const deleteItemCat = (id) => {
+    dispatch({ type: "filter", target: "cat", catId: id });
   };
   return (
     <div className="wrapper">
-      <div>
-        <form>
+      <form className="form-wrapper">
+        <div>
           <label>Add dog:</label>
           <input type="text" name="dog" ref={dogInput} />
           <button onClick={addDog}>Add</button>
+        </div>
+
+        <div>
           <label>Add cat:</label>
           <input type="text" name="cat" ref={catInput} />
           <button onClick={addCat}>Add</button>
-        </form>
-      </div>
-      <div>
-        {state.cats &&
-          state.cats.map((cat, index) => (
-            <Cats key={index} cat={cat} id={index + 1} />
-          ))}
-      </div>
-      <div>
-        {" "}
-        {state.dogs &&
-          state.dogs.map((dog, index) => (
-            <Dogs
-              key={index}
-              dog={dog}
-              id={index + 1}
-              deleteItemDog={deleteItemDog}
-            />
-          ))}
+        </div>
+      </form>
+      <div className="components-wrapper">
+        <div>
+          {state.dogs &&
+            state.dogs.map((dog) => (
+              <Dogs key={dog.id} dog={dog} deleteItemDog={deleteItemDog} />
+            ))}
+        </div>
+        <div>
+          {state.cats &&
+            state.cats.map((cat) => (
+              <Cats key={cat.id} cat={cat} deleteItemCat={deleteItemCat} />
+            ))}
+        </div>
       </div>
     </div>
   );

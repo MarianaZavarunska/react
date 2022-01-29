@@ -1,12 +1,12 @@
 import "./App.css";
 import Form from "./components/Form/Form";
-import Form2 from "./components/Form/Form2";
+import Cars from "./components/Cars/Cars";
 
 function App() {
   return (
     <div>
       <Form />
-      <Form2 />
+      <Cars />
     </div>
   );
 }

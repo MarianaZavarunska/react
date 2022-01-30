@@ -11,11 +11,14 @@ const carsSlice = createSlice({
   },
   reducers: {
     addCar: (state, action) => {
-      // if(action.payload.data.id)
-      state.cars.push({
+      let carId = action.payload.id ? action.payload.id : new Date().getTime();
+      let index = state.cars.findIndex((item) => item["id"] === carId);
+
+      state.cars[index === -1 ? state.cars.length : index] = {
+        id: carId,
         ...action.payload.data,
-        id: action.payload.data["id"] ? state.car.id : new Date().getTime(),
-      });
+      };
+      state.car = {};
     },
     deleteCar: (state, action) => {
       state.cars = state.cars.filter((car) => car.id !== action.payload.id);

@@ -23,13 +23,14 @@ const Form = () => {
 
   const onSubmitForm = (data) => {
     // data.id ? dispatch(updateCar({ data })) : dispatch(addCar({ data }));
-    dispatch(addCar({ data }));
+    dispatch(addCar({ data, id: car.id }));
     reset();
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmitForm)}>
+        <div>{car.id}</div>
         <div>
           {" "}
           <label> Model:</label>
@@ -59,7 +60,7 @@ const Form = () => {
           <div style={{ color: "red" }}>{errors.year.message}</div>
         )}
 
-        {/* <input type="hidden" defaultValue={car.id} {...register("id")} /> */}
+        {/* <input type="number" defaultValue={car.id} {...register("id")} /> */}
         <button>Save</button>
       </form>
     </>

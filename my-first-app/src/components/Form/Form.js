@@ -39,7 +39,7 @@ const Form = () => {
         {errors.year && (
           <div style={{ color: "red" }}>{errors.year.message}</div>
         )}
-        <button>Create</button>
+        <button>{car.id ? "Update" : "Create"}</button>
       </form>
     </div>
   );

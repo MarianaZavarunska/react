@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { joiResolver } from "@hookform/resolvers/joi";
 
-import { addCar, updateCar } from "../../store/cars.slice";
+import { addCar } from "../../store/cars.slice";
 import { carValidator } from "../../validators/car.validator";
 import "./Form.css";
 
@@ -22,7 +22,6 @@ const Form = () => {
   const { car } = useSelector((state) => state["carsReducer"]);
 
   const onSubmitForm = (data) => {
-    // data.id ? dispatch(updateCar({ data })) : dispatch(addCar({ data }));
     dispatch(addCar({ data, id: car.id }));
     reset();
   };
@@ -60,8 +59,7 @@ const Form = () => {
           <div style={{ color: "red" }}>{errors.year.message}</div>
         )}
 
-        {/* <input type="number" defaultValue={car.id} {...register("id")} /> */}
-        <button>Save</button>
+        <button>{car.id ? "Update" : "Create"}</button>
       </form>
     </>
   );

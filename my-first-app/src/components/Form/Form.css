@@ -1,0 +1,27 @@
+form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   gap: 5px;
+   margin: 20px 20px 10px;
+}
+form > div{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+}
+input{
+    font-size: 1.2rem;
+    width: 300px;
+}
+form button{
+    width: 100px;
+    align-self: flex-end;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: red;
+    border-color: red;
+    color:#fff;
+}

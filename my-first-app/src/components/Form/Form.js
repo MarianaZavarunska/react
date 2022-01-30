@@ -1,34 +1,68 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { addCar } from "../../store/car.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { joiResolver } from "@hookform/resolvers/joi";
+
+import { addCar, updateCar } from "../../store/cars.slice";
+import { carValidator } from "../../validators/car.validator";
+import "./Form.css";
 
 const Form = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: joiResolver(carValidator),
+    mode: "onTouched",
+  });
+
   const dispatch = useDispatch();
+  const { car } = useSelector((state) => state["carsReducer"]);
 
   const onSubmitForm = (data) => {
+    // data.id ? dispatch(updateCar({ data })) : dispatch(addCar({ data }));
     dispatch(addCar({ data }));
     reset();
   };
+
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit(onSubmitForm)}>
-        <label>
-          Model:
-          <input type="text" {...register("model")} />
-        </label>
-        <label>
-          Price:
-          <input type="text" {...register("price")} />
-        </label>
-        <label>
-          Year:
-          <input type="text" {...register("year")} />
-        </label>
+        <div>
+          {" "}
+          <label> Model:</label>
+          <input type="text" {...register("model")} defaultValue={car.model} />
+        </div>
+        {errors.model && (
+          <div style={{ color: "red" }}>{errors.model.message}</div>
+        )}
+
+        <div>
+          <label>Price: </label>
+          <input
+            type="number"
+            {...register("price")}
+            defaultValue={car.price}
+          />
+        </div>
+        {errors.price && (
+          <div style={{ color: "red" }}>{errors.price.message}</div>
+        )}
+
+        <div>
+          <label>Year: </label>
+          <input type="number" {...register("year")} defaultValue={car.year} />
+        </div>
+        {errors.year && (
+          <div style={{ color: "red" }}>{errors.year.message}</div>
+        )}
+
+        {/* <input type="hidden" defaultValue={car.id} {...register("id")} /> */}
         <button>Save</button>
       </form>
-    </div>
+    </>
   );
 };
 

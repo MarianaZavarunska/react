@@ -1,12 +1,12 @@
 import Joi from "joi";
 
-export const carValidator = Joi.object({
+export const carsValidator = Joi.object({
   model: Joi.string()
     .regex(new RegExp("^[[a-zA-ZА-яёЁіІїЇ]{1,20}$"))
     .required()
     .messages({
-      "string pattern base": "Required only letters",
-      "string empty": "You must write down some letter",
+      "string.pattern.base": "Required only letters",
+      "string.empty": "You must write down some letter!",
     }),
   price: Joi.number().min(1).max(1000000).messages({
     "number.base": "You can put price from 1 till 1 million!",

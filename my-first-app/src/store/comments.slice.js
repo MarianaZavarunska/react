@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import jsonService from "../services/json.service";
 
-export const getAllPosts = createAsyncThunk(
-  "postsSlice/getAllPosts",
+export const getAllComments = createAsyncThunk(
+  "commentsSlice/getAllComments",
   async (_, { rejectWithValue }) => {
     try {
-      const posts = await jsonService.getPosts();
+      const posts = await jsonService.getComments();
       return posts;
     } catch (e) {
       return rejectWithValue(e.message);
@@ -13,29 +13,29 @@ export const getAllPosts = createAsyncThunk(
   }
 );
 
-const postsSlice = createSlice({
-  name: "postsSlice",
+const commentsSlice = createSlice({
+  name: "commentsSlice",
   initialState: {
-    posts: [],
+    comments: [],
     status: null,
     error: null,
   },
-
   extraReducers: {
-    [getAllPosts.pending]: (state, action) => {
+    [getAllComments.pending]: (state, action) => {
       state.status = "pending";
       state.error = null;
     },
-    [getAllPosts.fulfilled]: (state, action) => {
+    [getAllComments.fulfilled]: (state, action) => {
       state.status = "fulfilled";
-      state.posts = action.payload;
+      state.comments = action.payload;
     },
-    [getAllPosts.rejected]: (state, action) => {
+    [getAllComments.rejected]: (state, action) => {
       state.status = "rejected";
       state.error = action.payload;
     },
   },
 });
 
-const postsReducer = postsSlice.reducer;
-export default postsReducer;
+const commentsReducer = commentsSlice.reducer;
+
+export default commentsReducer;

@@ -7,7 +7,6 @@ import { getAllUsers } from "../store/users.slice";
 const UsersPage = () => {
   const { users } = useSelector((state) => state["usersReducer"]);
   const dispatch = useDispatch();
-  console.log(users);
 
   useEffect(() => {
     dispatch(getAllUsers());

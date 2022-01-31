@@ -47,12 +47,7 @@ const carsSlice = createSlice({
   },
   reducers: {
     addCar: (state, action) => {
-      // let carId = action.payload.id ? action.payload.id : new Date().getTime();
-      let carId;
-      if (action.payload.id) {
-        carId = action.payload.id;
-      }
-      let index = state.cars.findIndex((item) => item["id"] === carId);
+      let index = state.cars.findIndex((item) => item["id"] === state.car.id);
 
       state.cars[index === -1 ? state.cars.length : index] =
         action.payload.data;

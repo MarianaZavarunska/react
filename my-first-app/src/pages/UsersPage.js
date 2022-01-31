@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import User from "../components/User/User";
 import { getAllUsers } from "../store/users.slice";
 
 const UsersPage = () => {
@@ -13,8 +14,8 @@ const UsersPage = () => {
   }, []);
 
   return (
-    <div>
-      {users && users.map((user) => <div key={user.id}>{user.name}</div>)}
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+      {users && users.map((user) => <User key={user.id} user={user} />)}
     </div>
   );
 };

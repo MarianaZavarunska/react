@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { joiResolver } from "@hookform/resolvers/joi";
 
-import { addCar } from "../../store/cars.slice";
+import { createCar } from "../../store/cars.slice";
 import { carValidator } from "../../validators/car.validator";
 import "./Form.css";
 
@@ -22,7 +22,8 @@ const Form = () => {
   const { car } = useSelector((state) => state["carsReducer"]);
 
   const onSubmitForm = (data) => {
-    dispatch(addCar({ data, id: car.id }));
+    // dispatch(addCar({ data, id: car.id }));
+    dispatch(createCar({ data, id: car.id }));
     reset();
   };
 

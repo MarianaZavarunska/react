@@ -1,23 +1,61 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+import carsService from "../services/cars.service";
+
+export const getAllCars = createAsyncThunk(
+  "carsSlice/getAllCars",
+  async (_, { rejectWithValue }) => {
+    try {
+      const cars = await carsService.getAllCars();
+      return cars;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+export const createCar = createAsyncThunk(
+  "carsSlice/createCar",
+  async ({ data }, { dispatch }) => {
+    try {
+      const newCar = await carsService.createCar(data);
+      dispatch(addCar({ data: newCar }));
+    } catch (e) {
+      console.log(e);
+    }
+  }
+);
+export const updateCar2 = createAsyncThunk(
+  "carsSlice/updateCar2",
+  async ({ data }, { dispatch }) => {
+    try {
+      const editedCar = await carsService.updateById(data);
+      dispatch(addCar({ data: editedCar }));
+    } catch (e) {
+      console.log(e);
+    }
+  }
+);
 
 const carsSlice = createSlice({
   name: "carsSlice",
   initialState: {
-    cars: [
-      { model: "Honda", price: "10000", year: "2000", id: 1643539069536 },
-      { model: "BMW", price: "10000", year: "2100", id: 1643339069536 },
-    ],
+    cars: [],
     car: {},
+    error: null,
+    status: null,
   },
   reducers: {
     addCar: (state, action) => {
-      let carId = action.payload.id ? action.payload.id : new Date().getTime();
+      // let carId = action.payload.id ? action.payload.id : new Date().getTime();
+      let carId;
+      if (action.payload.id) {
+        carId = action.payload.id;
+      }
       let index = state.cars.findIndex((item) => item["id"] === carId);
 
-      state.cars[index === -1 ? state.cars.length : index] = {
-        id: carId,
-        ...action.payload.data,
-      };
+      state.cars[index === -1 ? state.cars.length : index] =
+        action.payload.data;
       state.car = {};
     },
     deleteCar: (state, action) => {
@@ -27,6 +65,20 @@ const carsSlice = createSlice({
       state.car = {
         ...action.payload.car,
       };
+    },
+  },
+  extraReducers: {
+    [getAllCars.pending]: (state, action) => {
+      state.status = "pending";
+      state.error = null;
+    },
+    [getAllCars.fulfilled]: (state, action) => {
+      state.status = "fulfilled";
+      state.cars = action.payload;
+    },
+    [getAllCars.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
     },
   },
 });

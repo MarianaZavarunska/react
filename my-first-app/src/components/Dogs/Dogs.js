@@ -1,14 +1,14 @@
 import React from "react";
+import { Dog } from "..";
 
-import "./Dogs.css";
-
-const Dogs = ({ dog, deleteItemDog }) => {
+const Dogs = ({ dogs, dispatch }) => {
   return (
-    <div className="dog-wrapper">
-      <div>{dog.alias}</div>
-      <button onClick={() => deleteItemDog(dog.id)}>Delete</button>
+    <div>
+      {dogs.map((dog) => (
+        <Dog key={dog.id} dog={dog} dispatch={dispatch} />
+      ))}
     </div>
   );
 };
 
-export default Dogs;
+export { Dogs };

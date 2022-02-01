@@ -1,14 +1,14 @@
 import React from "react";
+import { Cat } from "..";
 
-import "./Cats.css";
-
-const Cats = ({ cat, deleteItemCat }) => {
+const Cats = ({ cats, dispatch }) => {
   return (
-    <div className="cat-wrapper">
-      <div> {cat.alias} </div>
-      <button onClick={() => deleteItemCat(cat.id)}>Delete</button>
+    <div>
+      {cats.map((cat) => (
+        <Cat key={cat.id} cat={cat} dispatch={dispatch} />
+      ))}
     </div>
   );
 };
 
-export default Cats;
+export { Cats };

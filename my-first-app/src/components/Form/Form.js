@@ -1,114 +1,30 @@
-import React, { useReducer, useRef } from "react";
+import React, { useRef } from "react";
 
-import Cats from "../Cats/Cats";
-import Dogs from "../Dogs/Dogs";
-import "./Forms.css";
-
-const Form = () => {
+const Form = ({ dispatch }) => {
   const catInput = useRef();
   const dogInput = useRef();
 
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "add":
-        if (action.target === "cat") {
-          return {
-            ...state,
-            cats: [
-              ...state.cats,
-              {
-                id: state.cats.length,
-                alias: action.payload,
-              },
-            ],
-          };
-        }
-        if (action.target === "dog") {
-          return {
-            ...state,
-            dogs: [
-              ...state.dogs,
-              {
-                id: state.dogs.length,
-                alias: action.payload,
-              },
-            ],
-          };
-        }
-        return state;
-      case "filter":
-        if (action.target === "cat") {
-          return {
-            ...state,
-            cats: [...state.cats.filter((cat) => cat.id !== action.catId)],
-          };
-        }
-        if (action.target === "dog") {
-          return {
-            ...state,
-            dogs: [...state.dogs.filter((dog) => dog.id !== action.dogId)],
-          };
-        }
-        return state;
-
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(reducer, {
-    dogs: [],
-    cats: [],
-  });
-
-  const addDog = (e) => {
+  const onSubmitForm = (e) => {
     e.preventDefault();
-    const newDog = dogInput.current.value;
-    dispatch({ type: "add", target: "dog", payload: newDog });
+    e.target.reset();
   };
-  const addCat = (e) => {
-    e.preventDefault();
-    const newCat = catInput.current.value;
-    dispatch({ type: "add", target: "cat", payload: newCat });
+  const onSaveCat = () => {
+    dispatch({ type: "ADD_CAT", payload: { cat: catInput.current.value } });
+  };
+  const onSaveDog = () => {
+    dispatch({ type: "ADD_DOG", payload: { dog: dogInput.current.value } });
   };
 
-  const deleteItemDog = (id) => {
-    dispatch({ type: "filter", target: "dog", dogId: id });
-  };
-  const deleteItemCat = (id) => {
-    dispatch({ type: "filter", target: "cat", catId: id });
-  };
   return (
-    <div className="wrapper">
-      <form className="form-wrapper">
-        <div>
-          <label>Add dog:</label>
-          <input type="text" name="dog" ref={dogInput} />
-          <button onClick={addDog}>Add</button>
-        </div>
-
-        <div>
-          <label>Add cat:</label>
-          <input type="text" name="cat" ref={catInput} />
-          <button onClick={addCat}>Add</button>
-        </div>
+    <div>
+      <form onSubmit={onSubmitForm}>
+        <input type="text" placeholder="cat" ref={catInput} />
+        <button onClick={onSaveCat}>Save</button>
+        <input type="text" placeholder="dog" ref={dogInput} />
+        <button onClick={onSaveDog}>Save</button>
       </form>
-      <div className="components-wrapper">
-        <div>
-          {state.dogs &&
-            state.dogs.map((dog) => (
-              <Dogs key={dog.id} dog={dog} deleteItemDog={deleteItemDog} />
-            ))}
-        </div>
-        <div>
-          {state.cats &&
-            state.cats.map((cat) => (
-              <Cats key={cat.id} cat={cat} deleteItemCat={deleteItemCat} />
-            ))}
-        </div>
-      </div>
     </div>
   );
 };
 
-export default Form;
+export { Form };

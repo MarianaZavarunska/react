@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { joiResolver } from "@hookform/resolvers/joi";
 
-import { createCar } from "../../store/cars.slice";
+import { createCar, updateCar } from "../../store/cars.slice";
 import { carValidator } from "../../validators/car.validator";
 import "./Form.css";
 
@@ -23,19 +23,23 @@ const Form = () => {
   const { car } = useSelector((state) => state["carsReducer"]);
 
   const onSubmitForm = (data) => {
-    dispatch(createCar({ data, id: car.id }));
+    car
+      ? dispatch(updateCar({ data, id: car.id }))
+      : dispatch(createCar({ data }));
     reset();
   };
   useEffect(() => {
-    setValue("model", car.model);
-    setValue("price", car.price);
-    setValue("year", car.year);
+    if (car) {
+      setValue("model", car.model);
+      setValue("price", car.price);
+      setValue("year", car.year);
+    }
   }, [car]);
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmitForm)}>
-        <div>{car.id}</div>
+        <div>{car?.id}</div>
         <div>
           {" "}
           <label> Model:</label>
@@ -61,7 +65,7 @@ const Form = () => {
           <div style={{ color: "red" }}>{errors.year.message}</div>
         )}
 
-        <button>{car.id ? "Update" : "Create"}</button>
+        <button>{car?.id ? "Update" : "Create"}</button>
       </form>
     </>
   );

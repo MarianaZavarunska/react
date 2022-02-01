@@ -23,7 +23,6 @@ const Form = () => {
   const { car } = useSelector((state) => state["carsReducer"]);
 
   const onSubmitForm = (data) => {
-    // dispatch(addCar({ data, id: car.id }));
     dispatch(createCar({ data, id: car.id }));
     reset();
   };

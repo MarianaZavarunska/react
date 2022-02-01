@@ -1,23 +1,12 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-
-import Layout from "./components/Layout/Layout";
-import UsersPage from "./pages/UsersPage";
-import PostsPage from "./pages/PostsPage";
-import CommentsPage from "./pages/CommentsPage";
-import CarsPage from "./pages/CarsPage";
+import Form from "./components/Form/Form";
+import Todos from "./components/Todos/Todos";
 
 function App() {
   return (
     <div>
-      <Routes>
-        <Route path={"/"} element={<Layout />}>
-          <Route path={"cars"} element={<CarsPage />} />
-          <Route path={"users"} element={<UsersPage />} />
-          <Route path={"posts"} element={<PostsPage />} />
-          <Route path={"comments"} element={<CommentsPage />} />
-        </Route>
-      </Routes>
+      <Form />
+      <Todos />
     </div>
   );
 }

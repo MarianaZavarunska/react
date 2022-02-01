@@ -1,69 +1,27 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { joiResolver } from "@hookform/resolvers/joi";
-
-import { createCar } from "../../store/cars.slice";
-import { carValidator } from "../../validators/car.validator";
-import "./Form.css";
+import { addTodo } from "../../store/todos.slice";
 
 const Form = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-    setValue,
-  } = useForm({
-    resolver: joiResolver(carValidator),
-    mode: "onTouched",
-  });
-
+  const todoInput = useRef();
   const dispatch = useDispatch();
-  const { car } = useSelector((state) => state["carsReducer"]);
+  const { toDos } = useSelector((state) => state["todosReducer"]);
 
-  const onSubmitForm = (data) => {
-    dispatch(createCar({ data, id: car.id }));
-    reset();
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    // console.log(todoInput.current.value);
+    dispatch(addTodo({ data: todoInput.current.value }));
+    e.target.reset();
   };
-  useEffect(() => {
-    setValue("model", car.model);
-    setValue("price", car.price);
-    setValue("year", car.year);
-  }, [car]);
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmitForm)}>
-        <div>{car.id}</div>
-        <div>
-          {" "}
-          <label> Model:</label>
-          <input type="text" {...register("model")} />
-        </div>
-        {errors.model && (
-          <div style={{ color: "red" }}>{errors.model.message}</div>
-        )}
-
-        <div>
-          <label>Price: </label>
-          <input type="number" {...register("price")} />
-        </div>
-        {errors.price && (
-          <div style={{ color: "red" }}>{errors.price.message}</div>
-        )}
-
-        <div>
-          <label>Year: </label>
-          <input type="number" {...register("year")} />
-        </div>
-        {errors.year && (
-          <div style={{ color: "red" }}>{errors.year.message}</div>
-        )}
-
-        <button>{car.id ? "Update" : "Create"}</button>
+    <div>
+      <form onSubmit={onSubmitForm}>
+        <div>Counter: {toDos.length}</div>
+        <input type="text" placeholder="todo" ref={todoInput} />
+        <button>Add</button>
       </form>
-    </>
+    </div>
   );
 };
 

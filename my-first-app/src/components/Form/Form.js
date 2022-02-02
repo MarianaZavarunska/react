@@ -5,7 +5,7 @@ import { addTodo } from "../../store/todos.slice";
 const Form = () => {
   const todoInput = useRef();
   const dispatch = useDispatch();
-  const { toDos } = useSelector((state) => state["todosReducer"]);
+  const { toDos, counter } = useSelector((state) => state["todosReducer"]);
 
   const onSubmitForm = (e) => {
     e.preventDefault();
@@ -15,11 +15,17 @@ const Form = () => {
   };
 
   return (
-    <div>
+    <div style={{ margin: "20px" }}>
       <form onSubmit={onSubmitForm}>
-        <div>Counter: {toDos.length}</div>
-        <input type="text" placeholder="todo" ref={todoInput} />
-        <button>Add</button>
+        <div style={{ fontSize: "1.2rem" }}>All: {toDos.length}</div>
+        <div style={{ fontSize: "1.2rem" }}>Completed: {counter}</div>
+        <input
+          type="text"
+          placeholder="todo"
+          ref={todoInput}
+          style={{ fontSize: "1.2rem" }}
+        />
+        <button style={{ fontSize: "1.2rem" }}>Add</button>
       </form>
     </div>
   );

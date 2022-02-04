@@ -11,7 +11,7 @@ links: {
 rocket: {
     rocket_name: "Falcon 9",
     first_stage: {
-        cores: 
+        cores: [
             {
                 flight: 7,
                 core: {
@@ -19,18 +19,21 @@ rocket: {
                     status: "unknown"
                 }
             }
-        
+        ]
     },
     second_stage: {
-        payloads: 
+        payloads: [
             {
                 payload_type: "Satellite",
                 payload_mass_kg: 15400,
                 payload_mass_lbs: 33951.2
             }
+      ]
     }
 }
 }
 
 
-console.log(space);
+// console.log(space);
+console.log(space.rocket.first_stage.cores[0].flight);
+

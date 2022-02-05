@@ -14,6 +14,7 @@ const Car = ({ car }) => {
         padding: "10px",
       }}
     >
+      <div> id: {id}</div>
       <div> Model: {model}</div>
       <div>Price:{price}</div>
       <div>Year:{year}</div>

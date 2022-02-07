@@ -1,0 +1,27 @@
+:root {
+  --primary-color: #0448c8;
+}
+
+.btn-search {
+  background-color: var(--primary-color);
+  border: none;
+  color: #fff;
+  width: 60px;
+  text-align: center;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+}
+
+input {
+  width: 150px;
+  border: none;
+  border-bottom: 1px solid var(--primary-color);
+  border-right: 1px solid var(--primary-color);
+  background-color: transparent;
+}
+
+/* input:focus {
+    outline: none;
+    background-color: var(--primary-color);
+} */

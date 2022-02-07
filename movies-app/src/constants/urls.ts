@@ -1,4 +1,4 @@
-const movieURL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b1a5f167c9d1cbda7ab4372e15e4d19c&page=1';
+const movieURL = 'https://api.themoviedb.org/3/discover/movie?api_key=b1a5f167c9d1cbda7ab4372e15e4d19c&page=1';
 
 const genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=b1a5f167c9d1cbda7ab4372e15e4d19c'
 

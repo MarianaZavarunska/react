@@ -1,5 +1,22 @@
-.movies-container{
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #0448C8;
+.movies-page {
+  background-color: #0448c8;
+}
+
+.nav-btns {
+  display: flex;
+  justify-content: center;
+}
+.nav-btns > button {
+  background-color: #05040d;
+  width: 50px;
+  border: none;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+}
+
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -11,7 +11,7 @@ const MovieListCard: FC<{ movie: IMovie }> = ({ movie }) => {
   let movie_data = movie.release_date.substring(0, index);
 
   return (
-    <Link to={"/details"} state={movie} className="movie-card">
+    <Link to={`/movies/${movie.id}`} state={movie} className="movie-card">
       <div>
         <img src={IMG_PATH + movie.poster_path} alt={movie.title} />
         <div className="data-container">{movie_data}</div>

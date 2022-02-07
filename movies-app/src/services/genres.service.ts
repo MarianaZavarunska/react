@@ -1,10 +1,9 @@
 import axios from "axios";
 import { genreURL } from "../constants";
-import { IGenre } from "../interfaces/genre.interface";
+import { IGenreResponse } from "../interfaces/genre.interface";
 
 const genresService = {
-    getAll: () => axios.get<IGenre[]>(genreURL),
-    
-}
+  getAll: () => axios.get<IGenreResponse>(genreURL),
+};
 
 export default genresService;

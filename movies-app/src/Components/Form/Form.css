@@ -16,6 +16,7 @@
 input {
   width: 150px;
   border: none;
+  color: #fff;
   border-bottom: 1px solid var(--primary-color);
   border-right: 1px solid var(--primary-color);
   background-color: transparent;

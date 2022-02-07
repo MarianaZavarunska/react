@@ -12,6 +12,7 @@ const Form: FC = () => {
 
   const onSubmitForm: SubmitHandler<{ movieName: string }> = (movieName) => {
     dispatch(setMovieName(movieName));
+
     reset();
   };
   return (

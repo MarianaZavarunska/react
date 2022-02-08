@@ -1,15 +1,15 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IGenre } from "../../interfaces/genre.interface";
 import genresService from "../../services/genres.service";
 
 interface IGenreState {
   genres: IGenre[];
-  genre: string;
+  genreId: number;
 }
 const initialState: IGenreState = {
   genres: [],
-  genre: "",
+  genreId: 0,
 };
 
 export const getAllGenres = createAsyncThunk(
@@ -23,7 +23,12 @@ export const getAllGenres = createAsyncThunk(
 const genresSlice = createSlice({
   name: "genresSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setGenreName: (state, action: PayloadAction<{ genreId: string }>) => {
+      state.genreId = +action.payload.genreId;
+      console.log(state.genreId);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getAllGenres.fulfilled, (state, action) => {
       state.genres = action.payload;
@@ -32,4 +37,6 @@ const genresSlice = createSlice({
 });
 
 const genresReducer = genresSlice.reducer;
+
+export const { setGenreName } = genresSlice.actions;
 export default genresReducer;

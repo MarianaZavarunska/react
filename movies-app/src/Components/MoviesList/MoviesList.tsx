@@ -3,6 +3,7 @@ import { FC, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import {
   getAllMovies,
+  getAllMoviesByGenre,
   getAllMoviesByName,
   getAllMoviesByYear,
   setPage,
@@ -14,20 +15,40 @@ const MoviesList: FC = () => {
   const { movies, currentPage, movieName, isNewMovie } = useAppSelector(
     (state) => state.moviesReducer
   );
+  const { genreId } = useAppSelector((state) => state.genresReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     // movieName
     //   ? dispatch(getAllMoviesByName(movieName))
     //   : dispatch(getAllMovies(currentPage));
+
     if (movieName) {
       dispatch(getAllMoviesByName(movieName));
-    } else if (isNewMovie === true) {
-      dispatch(getAllMoviesByYear(currentPage));
-    } else {
-      dispatch(getAllMovies(currentPage));
+      return;
     }
-  }, [currentPage, movieName, isNewMovie]);
+    if (isNewMovie === true) {
+      dispatch(getAllMoviesByYear(currentPage));
+      return;
+    }
+
+    if (genreId > 0) {
+      dispatch(getAllMoviesByGenre(genreId));
+      return;
+    }
+
+    dispatch(getAllMovies(currentPage));
+
+    // if (movieName) {
+    //   dispatch(getAllMoviesByName(movieName));
+    // } else if (isNewMovie === true) {
+    //   dispatch(getAllMoviesByYear(currentPage));
+    // } else if (genreId > 0) {
+    //   dispatch(getAllMoviesByGenre(genreId));
+    // } else {
+    //   dispatch(getAllMovies(currentPage));
+    // }
+  }, [currentPage, movieName, isNewMovie, genreId]);
 
   return (
     <div className="movies-page">

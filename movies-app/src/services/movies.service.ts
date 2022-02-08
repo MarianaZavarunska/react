@@ -15,6 +15,7 @@ const moviesService = {
   searchMovieByName: (name: string) =>
     axios.get<IMoviesResponse>(SEARCH_API_BY_NAME + name),
 
-  searchMovieByGenre: () => axios.get<IMoviesResponse>(SEARCH_API_BY_GENRE),
+  searchMovieByGenre: (genreId: number) =>
+    axios.get<IMoviesResponse>(SEARCH_API_BY_GENRE + genreId),
 };
 export default moviesService;

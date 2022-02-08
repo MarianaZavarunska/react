@@ -1,9 +1,7 @@
 import { FC, useEffect } from "react";
-import { useForm } from "react-hook-form";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getAllGenres } from "../../store/slices/genres.slice";
-import DropdownList from "../DropdownList/DropdownList";
+import { getAllGenres, setGenreName } from "../../store/slices";
 
 const GenreList: FC = () => {
   const { genres } = useAppSelector((state) => state.genresReducer);
@@ -14,11 +12,18 @@ const GenreList: FC = () => {
   }, []);
 
   return (
-    <select>
-      {genres.map((genre) => (
-        <DropdownList key={genre.id} genre={genre.name} />
-      ))}
-    </select>
+    <form>
+      <select
+        // multiple={true}
+        onChange={(e) => dispatch(setGenreName({ genreId: e.target.value }))}
+      >
+        {genres.map((genre) => (
+          <option key={genre.id} value={genre.id}>
+            {genre.name}
+          </option>
+        ))}
+      </select>
+    </form>
   );
 };
 

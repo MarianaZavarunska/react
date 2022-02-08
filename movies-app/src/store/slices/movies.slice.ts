@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+// import { IGenre } from "../../interfaces/genre.interface";
 import { IMovie } from "../../interfaces/movie.interface";
 import moviesService from "../../services/movies.service";
 
@@ -10,6 +11,7 @@ interface IMoviesState {
   currentPage: number;
   totalPage: number;
   isNewMovie: boolean;
+  // genresName: IGenre[];
   // rating: number;
   // hover: number;
 }
@@ -20,6 +22,7 @@ const initialState: IMoviesState = {
   currentPage: 1,
   totalPage: 1,
   isNewMovie: false,
+  // genresName: [],
   // rating: 0,
   // hover: 0,
 };
@@ -47,6 +50,14 @@ export const getAllMoviesByYear = createAsyncThunk(
   }
 );
 
+export const getAllMoviesByGenre = createAsyncThunk(
+  "moviesSlice/getAllMoviesByGenre",
+  async (genreId: number) => {
+    const { data } = await moviesService.searchMovieByGenre(genreId);
+    return data;
+  }
+);
+
 const moviesSlice = createSlice({
   name: "moviesSlice",
   initialState,
@@ -68,6 +79,15 @@ const moviesSlice = createSlice({
       state.isNewMovie = !state.isNewMovie;
       console.log(state.isNewMovie);
     },
+    // setGenresName: (
+    //   state,
+    //   action: PayloadAction<{ ids: number[]; genres: IGenre[] }>
+    // ) => {
+    //   // for (const id of action.payload.ids) {
+    //   //   id = action.payload.genres.filter((genre) => genre.id === id);
+    //   // }
+    //   // console.log(state.genresName);
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllMovies.fulfilled, (state, action) => {
@@ -84,6 +104,11 @@ const moviesSlice = createSlice({
       state.totalPage = action.payload.total_pages;
     });
     builder.addCase(getAllMoviesByYear.fulfilled, (state, action) => {
+      state.status = "fulfilled";
+      state.movies = action.payload.results;
+      state.totalPage = action.payload.total_pages;
+    });
+    builder.addCase(getAllMoviesByGenre.fulfilled, (state, action) => {
       state.status = "fulfilled";
       state.movies = action.payload.results;
       state.totalPage = action.payload.total_pages;

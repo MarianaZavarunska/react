@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IGenre } from "../../interfaces/genre.interface";
+import { IBackdrops } from "../../interfaces/images.interface";
 import { IMovie } from "../../interfaces/movie.interface";
+import imagesService from "../../services/images.service";
 import moviesService from "../../services/movies.service";
-
 interface ISearch {
   movieName?: string;
   currentPage: number;
@@ -17,6 +18,7 @@ interface IMoviesState {
   currentPage: number;
   totalPage: number;
   isNewMovie: boolean;
+  images: IBackdrops[];
   // rating: number;
   // hover: number;
 }
@@ -27,6 +29,7 @@ const initialState: IMoviesState = {
   currentPage: 1,
   totalPage: 1,
   isNewMovie: false,
+  images: [],
   // rating: 0,
   // hover: 0,
 };
@@ -66,6 +69,14 @@ export const getAllMoviesByGenre = createAsyncThunk(
       genreId,
       currentPage
     );
+    return data;
+  }
+);
+
+export const getAllImages = createAsyncThunk(
+  "moviesSlice/getAllImages ",
+  async (movieId: number) => {
+    const { data } = await imagesService.getAll(movieId);
     return data;
   }
 );
@@ -134,6 +145,10 @@ const moviesSlice = createSlice({
       state.status = "fulfilled";
       state.movies = action.payload.results;
       state.totalPage = action.payload.total_pages;
+    });
+    builder.addCase(getAllImages.fulfilled, (state, action) => {
+      state.status = "fulfilled";
+      state.images = action.payload.backdrops;
     });
   },
 });

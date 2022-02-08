@@ -32,7 +32,11 @@ const MovieListCard: FC<{ movie: IMovie }> = ({ movie }) => {
   );
 
   return (
-    <Link to={`/movies/${movie.id}`} state={movie} className="movie-card">
+    <Link
+      to={`/movies/${movie.id}`}
+      state={{ movie, genresName }}
+      className="movie-card"
+    >
       <div>
         {movie.poster_path !== null && (
           <img src={IMG_PATH + movie.poster_path} alt={movie.title} />

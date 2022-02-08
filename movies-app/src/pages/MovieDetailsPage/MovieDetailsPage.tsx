@@ -6,9 +6,14 @@ import { IMG_PATH } from "../../constants/urls";
 import MovieInfo from "../../Components/MovieInfo/MovieInfo";
 import "./MovieDetailsPage.css";
 
+interface IStateResponse {
+  movie: IMovie;
+  genresName: string[];
+}
+
 const MovieDetailsPage: FC = () => {
   const location = useLocation();
-  const movie = location.state as IMovie;
+  const { movie, genresName } = location.state as IStateResponse;
 
   return (
     <div className="movie-details-container">
@@ -17,7 +22,7 @@ const MovieDetailsPage: FC = () => {
           <img src={IMG_PATH + movie.poster_path} alt={movie.title} />
         )}
       </div>
-      <MovieInfo movie={movie} />
+      <MovieInfo movie={movie} genresName={genresName} />
     </div>
   );
 };

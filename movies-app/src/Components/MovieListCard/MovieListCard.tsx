@@ -57,7 +57,9 @@ const MovieListCard: FC<{ movie: IMovie }> = ({ movie }) => {
         <StarsRating />
       </div>
 
-      <div className="overview-container">{movie.overview}</div>
+      {movie.overview && (
+        <div className="overview-container">{movie.overview}</div>
+      )}
     </Link>
   );
 };

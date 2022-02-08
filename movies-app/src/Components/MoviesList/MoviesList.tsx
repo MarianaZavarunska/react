@@ -24,16 +24,14 @@ const MoviesList: FC = () => {
 
     if (movieName && currentPage <= totalPage) {
       dispatch(getAllMoviesByName({ movieName, currentPage }));
-      // console.log(totalPage);
-
       return;
     }
     if (isNewMovie === true) {
       dispatch(getAllMoviesByYear(currentPage));
       return;
     }
-    if (genreId > 0) {
-      dispatch(getAllMoviesByGenre(genreId));
+    if (genreId > 0 && currentPage <= totalPage) {
+      dispatch(getAllMoviesByGenre({ genreId, currentPage }));
       return;
     }
     dispatch(getAllMovies(currentPage));

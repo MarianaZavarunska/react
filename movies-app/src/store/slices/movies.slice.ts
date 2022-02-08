@@ -5,9 +5,11 @@ import { IMovie } from "../../interfaces/movie.interface";
 import moviesService from "../../services/movies.service";
 
 interface ISearch {
-  movieName: string;
+  movieName?: string;
   currentPage: number;
+  genreId?: number;
 }
+
 interface IMoviesState {
   movies: IMovie[];
   movieName: string | null;
@@ -58,8 +60,12 @@ export const getAllMoviesByYear = createAsyncThunk(
 
 export const getAllMoviesByGenre = createAsyncThunk(
   "moviesSlice/getAllMoviesByGenre",
-  async (genreId: number) => {
-    const { data } = await moviesService.searchMovieByGenre(genreId);
+  async (arg: ISearch) => {
+    const { genreId, currentPage } = arg;
+    const { data } = await moviesService.searchMovieByGenre(
+      genreId,
+      currentPage
+    );
     return data;
   }
 );
@@ -81,10 +87,11 @@ const moviesSlice = createSlice({
         state.currentPage += action.payload.action;
       }
     },
-    setYearFilter: (state, action: PayloadAction<{ foo: string }>) => {
+    setYearFilter: (state) => {
       state.isNewMovie = !state.isNewMovie;
       console.log(state.isNewMovie);
     },
+
     setGenresName: (
       state,
       action: PayloadAction<{

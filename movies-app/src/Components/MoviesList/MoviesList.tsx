@@ -22,7 +22,7 @@ const MoviesList: FC = () => {
     //   ? dispatch(getAllMoviesByName(movieName))
     //   : dispatch(getAllMovies(currentPage));
 
-    if (movieName && currentPage < totalPage) {
+    if (movieName && currentPage <= totalPage) {
       dispatch(getAllMoviesByName({ movieName, currentPage }));
       console.log(totalPage);
 

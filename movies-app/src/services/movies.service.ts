@@ -8,20 +8,21 @@ import {
   newMoviesURL,
 } from "../constants";
 
-// let url:URL;
-  // url = new URL(SEARCH_API_BY_NAME);
-    // url.searchParams.set('page', 3);
-    // url.searchParams.set('query', name);
-    // url.toString();
+let url: URL;
+let request: string;
 
 const moviesService = {
   getAll: (page: number) => axios.get<IMoviesResponse>(movieURL + page),
   getAllByYear: (page: number) =>
     axios.get<IMoviesResponse>(newMoviesURL + page),
-  searchMovieByName: (name: string, currentPage: number) =>
-    axios.get<IMoviesResponse>(
-      SEARCH_API_BY_NAME + name + "&page=" + currentPage
-    ),
+  searchMovieByName: (name: string, currentPage: number) => {
+    url = new URL(SEARCH_API_BY_NAME);
+    url.searchParams.set("page", currentPage.toString());
+    url.searchParams.set("query", name.toString());
+    request = url.toString();
+
+    return axios.get<IMoviesResponse>(request);
+  },
 
   searchMovieByGenre: (genreId: number) =>
     axios.get<IMoviesResponse>(SEARCH_API_BY_GENRE + genreId),

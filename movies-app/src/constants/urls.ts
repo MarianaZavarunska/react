@@ -15,6 +15,8 @@ const SEARCH_API_BY_NAME =
 const SEARCH_API_BY_GENRE =
   "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b1a5f167c9d1cbda7ab4372e15e4d19c&page=1&with_genres=";
 
+// cast https://api.themoviedb.org/3/movie/2/credits?api_key=b1a5f167c9d1cbda7ab4372e15e4d19c&page=1
+
 export default movieURL;
 export {
   IMG_PATH,

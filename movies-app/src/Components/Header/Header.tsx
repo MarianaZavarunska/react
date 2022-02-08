@@ -11,7 +11,7 @@ const Header: FC = () => {
   return (
     <div className="header">
       <div className="logo">
-        <img src={require("./logo-movie_preview_rev_1.jpeg")} alt="logo" />
+        <img src={require("./logo_preview_rev_2.jpeg")} alt="logo" />
       </div>
       <div>
         <button

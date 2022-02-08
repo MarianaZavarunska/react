@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// import { IGenre } from "../../interfaces/genre.interface";
+import { IGenre } from "../../interfaces/genre.interface";
 import { IMovie } from "../../interfaces/movie.interface";
 import moviesService from "../../services/movies.service";
 
@@ -15,7 +15,6 @@ interface IMoviesState {
   currentPage: number;
   totalPage: number;
   isNewMovie: boolean;
-  // genresName: IGenre[];
   // rating: number;
   // hover: number;
 }
@@ -26,7 +25,6 @@ const initialState: IMoviesState = {
   currentPage: 1,
   totalPage: 1,
   isNewMovie: false,
-  // genresName: [],
   // rating: 0,
   // hover: 0,
 };
@@ -87,15 +85,20 @@ const moviesSlice = createSlice({
       state.isNewMovie = !state.isNewMovie;
       console.log(state.isNewMovie);
     },
-    // setGenresName: (
-    //   state,
-    //   action: PayloadAction<{ ids: number[]; genres: IGenre[] }>
-    // ) => {
-    //   // for (const id of action.payload.ids) {
-    //   //   id = action.payload.genres.filter((genre) => genre.id === id);
-    //   // }
-    //   // console.log(state.genresName);
-    // },
+    setGenresName: (
+      state,
+      action: PayloadAction<{
+        ids: number[];
+        genres: IGenre[];
+        genresName: string[];
+      }>
+    ) => {
+      for (const id of action.payload.ids) {
+        action.payload.genresName.push(
+          action.payload.genres.find((genre) => genre.id === id)?.name ?? ""
+        );
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllMovies.fulfilled, (state, action) => {
@@ -106,6 +109,10 @@ const moviesSlice = createSlice({
     builder.addCase(getAllMovies.pending, (state, action) => {
       state.status = "Loading";
     });
+    // builder.addCase(getAllMoviesByName.pending, (state, action) => {
+    //   state.status = "pending";
+    //   state.currentPage = 1;
+    // });
     builder.addCase(getAllMoviesByName.fulfilled, (state, action) => {
       state.status = "fulfilled";
       state.movies = action.payload.results;
@@ -127,4 +134,5 @@ const moviesSlice = createSlice({
 const moviesReducer = moviesSlice.reducer;
 
 export default moviesReducer;
-export const { setMovieName, setPage, setYearFilter } = moviesSlice.actions;
+export const { setMovieName, setPage, setYearFilter, setGenresName } =
+  moviesSlice.actions;

@@ -1,4 +1,4 @@
-import { IGenre } from "./genre.interface";
+// import { IGenre } from "./genre.interface";
 
 export interface IMovie {
   // poster_path: null | string;
@@ -10,7 +10,7 @@ export interface IMovie {
   // popularity: number,
   // vote_average: number;
   adult?: boolean;
-  genre_ids: number[] | IGenre[];
+  genre_ids: number[];
   id: number;
   original_language?: string;
   original_title?: string;

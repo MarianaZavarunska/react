@@ -4,31 +4,56 @@ import { Link } from "react-router-dom";
 import { IMG_PATH } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { IMovie } from "../../interfaces/movie.interface";
-// import { setGenresName } from "../../store/slices";
+import { setGenresName } from "../../store/slices";
 import StarsRating from "../StartsRating/StarsRating";
 import "./MovieListCard.css";
 
 const MovieListCard: FC<{ movie: IMovie }> = ({ movie }) => {
-  let index = movie.release_date.indexOf("-");
-  let movie_data = movie.release_date.substring(0, index);
+  let movie_data;
+  let genresName: string[] = [];
 
-  // const dispatch = useAppDispatch();
-  // const { genres } = useAppSelector((state) => state.genresReducer);
+  if (movie.release_date) {
+    // let index = movie.release_date.indexOf("-");
+    // movie_data = movie.release_date.substring(0, index);
+    movie_data = new Date(Date.parse(movie.release_date)).getFullYear();
+  } else {
+    movie_data = "";
+  }
 
-  // dispatch(setGenresName({ ids: movie.genre_ids, genres: genres }));
+  const dispatch = useAppDispatch();
+  const { genres } = useAppSelector((state) => state.genresReducer);
+
+  dispatch(
+    setGenresName({
+      ids: movie.genre_ids,
+      genres: genres,
+      genresName: genresName,
+    })
+  );
 
   return (
     <Link to={`/movies/${movie.id}`} state={movie} className="movie-card">
       <div>
-        <img src={IMG_PATH + movie.poster_path} alt={movie.title} />
-        <div className="data-container">{movie_data}</div>
+        {movie.poster_path !== null && (
+          <img src={IMG_PATH + movie.poster_path} alt={movie.title} />
+        )}
+        {movie_data !== "" && (
+          <div className="data-container">{movie_data}</div>
+        )}
       </div>
       <div className="movie-info">
         <div>{movie.title}</div>
-        <div>
-          <span>IMDb: </span>
-          {movie.vote_average}
+        {movie.vote_average !== 0 && (
+          <div>
+            <span className="rating">IMDb: </span>
+            {movie.vote_average}
+          </div>
+        )}
+        <div className="genre-badge">
+          {genresName &&
+            genresName.map((genre) => <span key={genre}>{genre}</span>)}
         </div>
+
         <StarsRating />
       </div>
 

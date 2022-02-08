@@ -4,6 +4,10 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IMovie } from "../../interfaces/movie.interface";
 import moviesService from "../../services/movies.service";
 
+interface ISearch {
+  movieName: string;
+  currentPage: number;
+}
 interface IMoviesState {
   movies: IMovie[];
   movieName: string | null;
@@ -36,8 +40,12 @@ export const getAllMovies = createAsyncThunk(
 );
 export const getAllMoviesByName = createAsyncThunk(
   "moviesSlice/getAllMoviesByName",
-  async (movieName: string) => {
-    const { data } = await moviesService.searchMovieByName(movieName);
+  async (arg: ISearch) => {
+    const { movieName, currentPage } = arg;
+    const { data } = await moviesService.searchMovieByName(
+      movieName,
+      currentPage
+    );
     return data;
   }
 );

@@ -12,9 +12,8 @@ import MovieListCard from "../MovieListCard/MovieListCard";
 import "./MoviesList.css";
 
 const MoviesList: FC = () => {
-  const { movies, currentPage, movieName, isNewMovie } = useAppSelector(
-    (state) => state.moviesReducer
-  );
+  const { movies, currentPage, movieName, isNewMovie, totalPage } =
+    useAppSelector((state) => state.moviesReducer);
   const { genreId } = useAppSelector((state) => state.genresReducer);
   const dispatch = useAppDispatch();
 
@@ -23,8 +22,10 @@ const MoviesList: FC = () => {
     //   ? dispatch(getAllMoviesByName(movieName))
     //   : dispatch(getAllMovies(currentPage));
 
-    if (movieName) {
-      dispatch(getAllMoviesByName(movieName));
+    if (movieName && currentPage < totalPage) {
+      dispatch(getAllMoviesByName({ movieName, currentPage }));
+      console.log(totalPage);
+
       return;
     }
     if (isNewMovie === true) {

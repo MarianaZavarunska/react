@@ -2,15 +2,16 @@ import axios from "axios";
 
 import movieURL from "../constants/urls";
 import { IMoviesResponse } from "../interfaces/movie.interface";
-import { SEARCH_API_BY_GENRE, newMoviesURL } from "../constants";
+import { latestMoviesURL } from "../constants";
 
 let url: URL;
 let request: string;
 
 const moviesService = {
   getAll: (page: number) => axios.get<IMoviesResponse>(movieURL + page),
+
   getAllByYear: (page: number) =>
-    axios.get<IMoviesResponse>(newMoviesURL + page),
+    axios.get<IMoviesResponse>(latestMoviesURL + page),
 
   searchMovieByName: (name: string | undefined, currentPage: number) => {
     url = new URL(movieURL);

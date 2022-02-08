@@ -1,5 +1,6 @@
 .dropdown-container > select {
   background-color: #05020d;
+  font-size: 1.1rem;
   color: #fff;
   border: none;
 }

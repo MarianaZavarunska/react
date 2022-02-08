@@ -15,7 +15,7 @@ const Header: FC = () => {
       </div>
       <div>
         <button
-          style={{ color: "#fff" }}
+          className="year-container"
           onClick={() => dispatch(setYearFilter())}
         >
           The Latest

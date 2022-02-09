@@ -114,6 +114,9 @@ const moviesSlice = createSlice({
     setSwitch: (state) => {
       state.isSwitched = !state.isSwitched;
     },
+    clearFilter: (state) => {
+      state.queryParams = {};
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllMovies.pending, (state, action) => {
@@ -155,4 +158,5 @@ export const {
   setGenreId,
   setGenresName,
   setSwitch,
+  clearFilter,
 } = moviesSlice.actions;

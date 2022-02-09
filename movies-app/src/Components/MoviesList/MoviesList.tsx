@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 
-import { MovieListCard } from "..";
+import { MovieFilter, MovieListCard } from "..";
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import {
   getAllMovies,
@@ -54,6 +54,7 @@ const MoviesList: FC = () => {
       className="movies-page"
       style={{ backgroundColor: isSwitched ? "#fff" : "#0448c8" }}
     >
+      <MovieFilter />
       <div className="nav-btns">
         <button onClick={() => dispatch(setPage({ action: -1 }))}>Prev</button>
         <button onClick={() => dispatch(setPage({ action: 1 }))}>Next</button>

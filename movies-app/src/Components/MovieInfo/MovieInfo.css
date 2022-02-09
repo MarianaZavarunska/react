@@ -1,7 +1,7 @@
 .movie-details-content {
   display: flex;
   flex-direction: column;
-  color: #fff;
+  color: var(--white-color);
   gap: 19px;
 }
 .movie-details-content > div:first-of-type {
@@ -9,9 +9,9 @@
   font-size: 1.5rem;
   letter-spacing: 2px;
   font-weight: 700;
-  color: #fff;
-  box-shadow: 0px 5px 10px #05020d;
-  background-color: #05020d;
+  color: var(--white-color);
+  box-shadow: 0px 5px 10px var(--primary-color);
+  background-color: var(--primary-color);
   border-radius: 3px;
   padding: 10px;
 }
@@ -22,13 +22,13 @@
 
 .genre-movie-container {
   display: flex;
-  color: #fff;
+  color: var(--white-color);
   gap: 10px;
 }
 .genre-movie-container > span {
-  box-shadow: 0px 5px 10px #05020d;
-  background-color: #05020d;
-  color: #fff;
+  box-shadow: 0px 5px 10px var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--white-color);
   border-radius: 3px;
   padding: 10px;
 }

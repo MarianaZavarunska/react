@@ -1,9 +1,9 @@
 .movie-card {
   width: 325px;
   text-decoration: none;
-  background-color: #05070d;
+  background-color: var(--primary-color);
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.856);
-  color: #fff;
+  color: var(--white-color);
   position: relative;
   overflow: hidden;
   margin: 1rem;
@@ -18,7 +18,7 @@
   top: 5px;
   right: 5px;
   font-size: 1.2rem;
-  background-color: #0448c8;
+  background-color: var(--secondary-color);
   padding: 2px 4px;
   z-index: 2;
 }
@@ -39,7 +39,7 @@
 
 .movie-info span.rating {
   background-color: yellow;
-  color: #05070d;
+  color: var(--primary-color);
   margin-right: 5px;
 }
 .genre-badge {
@@ -49,13 +49,13 @@
   margin: 3px 0;
 }
 .genre-badge > span {
-  background-color: #0448c8;
+  background-color: var(--secondary-color);
   padding: 5px;
 }
 .overview-container {
   position: absolute;
-  background-color: #fff;
-  color: #05070d;
+  background-color: var(--white-color);
+  color: var(--primary-color);
   letter-spacing: 1px;
   left: 0;
   bottom: 0;

@@ -1,5 +1,5 @@
 .movies-page {
-  background-color: #0448c8;
+  background-color: var(--secondary-color);
 }
 
 .nav-btns {
@@ -7,10 +7,10 @@
   justify-content: center;
 }
 .nav-btns > button {
-  background-color: #05040d;
+  background-color: var(--primary-color);
   width: 50px;
   border: none;
-  color: #fff;
+  color: var(--white-color);
   text-align: center;
   padding: 5px;
   margin: 5px;

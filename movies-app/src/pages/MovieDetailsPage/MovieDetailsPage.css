@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: #0448c8;
+  background-color: var(--secondary-color);
   padding: 10px;
   height: 100vh;
   overflow-y: auto;
@@ -14,5 +14,5 @@
 }
 .poster-container > img {
   width: 400px;
-  box-shadow: 0px 5px 10px #05020d;
+  box-shadow: 0px 5px 10px var(--primary-color);
 }

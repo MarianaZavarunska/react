@@ -1,6 +1,7 @@
 .movie-details-content {
   display: flex;
   flex-direction: column;
+  color: #fff;
   gap: 19px;
 }
 .movie-details-content > div:first-of-type {
@@ -17,16 +18,17 @@
 .movie-details-content > div {
   font-size: 1.1rem;
   letter-spacing: 2px;
-  color: #fff;
 }
 
 .genre-movie-container {
   display: flex;
+  color: #fff;
   gap: 10px;
 }
 .genre-movie-container > span {
   box-shadow: 0px 5px 10px #05020d;
   background-color: #05020d;
+  color: #fff;
   border-radius: 3px;
   padding: 10px;
 }

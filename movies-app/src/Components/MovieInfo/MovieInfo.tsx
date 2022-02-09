@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useAppSelector } from "../../hooks";
 
 import { IMovie } from "../../interfaces/movie.interface";
 import MovieImages from "../MovieImages/MovieImages";
@@ -8,13 +9,21 @@ const MovieInfo: FC<{ movie: IMovie; genresName: string[] }> = ({
   movie,
   genresName,
 }) => {
+  const { isSwitched } = useAppSelector((state) => state.moviesReducer);
+
   return (
-    <div className="movie-details-content">
+    <div
+      className="movie-details-content"
+      style={{ color: isSwitched ? "#05020D" : "#fff" }}
+    >
       <div>{movie.title}</div>
 
       <div>Original Title: {movie.original_title}</div>
 
-      <div className="genre-movie-container">
+      <div
+        className="genre-movie-container"
+        style={{ color: isSwitched ? "#fff" : "#05020D" }}
+      >
         {genresName &&
           genresName.map((genre, index) => <span key={index}>{genre}</span>)}
       </div>

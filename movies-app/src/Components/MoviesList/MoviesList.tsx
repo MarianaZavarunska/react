@@ -14,7 +14,10 @@ import "./MoviesList.css";
 const MoviesList: FC = () => {
   let { movies, currentPage, movieName, isNewMovie, totalPage } =
     useAppSelector((state) => state.moviesReducer);
+
   const { genreId } = useAppSelector((state) => state.genresReducer);
+
+  const { isSwitched } = useAppSelector((state) => state.moviesReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -38,7 +41,10 @@ const MoviesList: FC = () => {
   }, [currentPage, movieName, isNewMovie, genreId]);
 
   return (
-    <div className="movies-page">
+    <div
+      className="movies-page"
+      style={{ backgroundColor: isSwitched ? "#fff" : "#0448c8" }}
+    >
       <div className="nav-btns">
         <button onClick={() => dispatch(setPage({ action: -1 }))}>Prev</button>
         <button onClick={() => dispatch(setPage({ action: 1 }))}>Next</button>

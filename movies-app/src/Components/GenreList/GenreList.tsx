@@ -6,6 +6,7 @@ import "./GenreList.css";
 
 const GenreList: FC = () => {
   const { genres } = useAppSelector((state) => state.genresReducer);
+  const { isSwitched } = useAppSelector((state) => state.moviesReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const GenreList: FC = () => {
     <form className="dropdown-container">
       <select
         // multiple={true}
+        style={{ backgroundColor: isSwitched ? "darkblue" : "#05020D" }}
         onChange={(e) => dispatch(setGenreName({ genreId: e.target.value }))}
       >
         <option value={0}>All Movies</option>

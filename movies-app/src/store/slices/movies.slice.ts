@@ -22,6 +22,7 @@ interface IMoviesState {
   isNewMovie: boolean;
   images: IBackdrops[];
   reviews: IReview[];
+  isSwitched: boolean;
   // rating: number;
   // hover: number;
 }
@@ -34,6 +35,7 @@ const initialState: IMoviesState = {
   isNewMovie: false,
   images: [],
   reviews: [],
+  isSwitched: false,
   // rating: 0,
   // hover: 0,
 };
@@ -112,11 +114,10 @@ const moviesSlice = createSlice({
     },
     setYearFilter: (state) => {
       state.isNewMovie = !state.isNewMovie;
-      console.log(state.isNewMovie);
     },
 
     setGenresName: (
-      state,
+      _, //state
       action: PayloadAction<{
         ids: number[];
         genres: IGenre[];
@@ -128,6 +129,9 @@ const moviesSlice = createSlice({
           action.payload.genres.find((genre) => genre.id === id)?.name ?? ""
         );
       }
+    },
+    setSwitch: (state) => {
+      state.isSwitched = !state.isSwitched;
     },
   },
   extraReducers: (builder) => {
@@ -172,5 +176,10 @@ const moviesSlice = createSlice({
 const moviesReducer = moviesSlice.reducer;
 
 export default moviesReducer;
-export const { setMovieName, setPage, setYearFilter, setGenresName } =
-  moviesSlice.actions;
+export const {
+  setMovieName,
+  setPage,
+  setYearFilter,
+  setGenresName,
+  setSwitch,
+} = moviesSlice.actions;

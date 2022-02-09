@@ -7,13 +7,12 @@ import "./Form.css";
 
 const Form: FC = () => {
   const { register, handleSubmit, reset } = useForm<{ movieName: string }>();
-  // let { currentPage } = useAppSelector((state) => state.moviesReducer);
-
+ 
   const dispatch = useAppDispatch();
 
   const onSubmitForm: SubmitHandler<{ movieName: string }> = (movieName) => {
     dispatch(setMovieName(movieName));
-    // currentPage = 1;
+
     reset();
   };
   return (

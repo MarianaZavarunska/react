@@ -115,7 +115,9 @@ const moviesSlice = createSlice({
       state.isSwitched = !state.isSwitched;
     },
     clearFilter: (state) => {
-      state.queryParams = {};
+      state.queryParams.movieName = "";
+      state.queryParams.currentPage = 1;
+      state.queryParams.genreId = undefined;
     },
   },
   extraReducers: (builder) => {

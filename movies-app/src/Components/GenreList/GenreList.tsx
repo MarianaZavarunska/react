@@ -5,7 +5,7 @@ import { getAllGenres, setGenreId } from "../../store/slices";
 import "./GenreList.css";
 
 const GenreList: FC = () => {
-  const { genres } = useAppSelector((state) => state.genresReducer);
+  const { genres, status } = useAppSelector((state) => state.genresReducer);
   const { isSwitched } = useAppSelector((state) => state.moviesReducer);
   const dispatch = useAppDispatch();
 
@@ -21,11 +21,15 @@ const GenreList: FC = () => {
         onChange={(e) => dispatch(setGenreId({ genreId: e.target.value }))}
       >
         <option value={0}>All Movies</option>
-        {genres.map((genre) => (
-          <option key={genre.id} value={genre.id}>
-            {genre.name}
-          </option>
-        ))}
+
+        {status === "pending" && <option>Loading</option>}
+
+        {status === "fulfilled" &&
+          genres.map((genre) => (
+            <option key={genre.id} value={genre.id}>
+              {genre.name}
+            </option>
+          ))}
       </select>
     </form>
   );

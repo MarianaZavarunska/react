@@ -7,7 +7,7 @@ import { getAllReviews } from "../../store/slices";
 import "./MovieReviews.css";
 
 const MovieReviews: FC<{ movieId: number }> = ({ movieId }) => {
-  const { reviews } = useAppSelector((state) => state.moviesReducer);
+  const { reviews, status } = useAppSelector((state) => state.reviewReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,7 +16,10 @@ const MovieReviews: FC<{ movieId: number }> = ({ movieId }) => {
 
   return (
     <div className="reviews-container">
-      {reviews &&
+      {status === "pending" && <div>Loading</div>}
+
+      {status === "fulfilled" &&
+        reviews &&
         reviews.map((review) => (
           <MovieReview key={review.id} review={review} />
         ))}
@@ -24,4 +27,4 @@ const MovieReviews: FC<{ movieId: number }> = ({ movieId }) => {
   );
 };
 
-export {MovieReviews};
+export { MovieReviews };

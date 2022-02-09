@@ -13,7 +13,7 @@ import {
 import "./MoviesList.css";
 
 const MoviesList: FC = () => {
-  let { movies, queryParams, totalPage } = useAppSelector(
+  let { movies, queryParams, totalPage, status } = useAppSelector(
     (state) => state.moviesReducer
   );
 
@@ -59,9 +59,10 @@ const MoviesList: FC = () => {
         <button onClick={() => dispatch(setPage({ action: 1 }))}>Next</button>
       </div>
       <div className="movies-container">
-        {movies.map((movie) => (
-          <MovieListCard key={movie.id} movie={movie} />
-        ))}
+        {status === "pending" && <h1>Loading</h1>}
+
+        {status === "fulfilled" &&
+          movies.map((movie) => <MovieListCard key={movie.id} movie={movie} />)}
       </div>
     </div>
   );

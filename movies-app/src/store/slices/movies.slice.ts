@@ -1,16 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IMovie, IGenre, IReview, IQueryParams } from "../../interfaces";
-import { imagesService, moviesService, reviewsService } from "../../services";
+import { IMovie, IGenre, IQueryParams } from "../../interfaces";
+import { moviesService } from "../../services";
 interface IMoviesState {
   movies: IMovie[];
-  // movieName: string | null;
   status: string | null;
-  // currentPage: number;
   totalPage: number;
-  // isNewMovie: boolean;
-  // images: IBackdrops[];
-  reviews: IReview[];
   isSwitched: boolean;
   queryParams: IQueryParams;
   // rating: number;
@@ -19,11 +14,7 @@ interface IMoviesState {
 const initialState: IMoviesState = {
   movies: [],
   status: null,
-  // currentPage: 1,
   totalPage: 1,
-  // isNewMovie: false,
-  // images: [],
-  reviews: [],
   isSwitched: false,
   queryParams: {
     movieName: "",
@@ -72,22 +63,6 @@ export const getAllMoviesByGenre = createAsyncThunk(
       queryParams.genreId,
       queryParams.currentPage
     );
-    return data;
-  }
-);
-
-// export const getAllImages = createAsyncThunk(
-//   "moviesSlice/getAllImages",
-//   async (movieId: number) => {
-//     const { data } = await imagesService.getAll(movieId);
-//     return data;
-//   }
-// );
-
-export const getAllReviews = createAsyncThunk(
-  "moviesSlice/getAllReviews",
-  async (movieId: number) => {
-    const { data } = await reviewsService.getAll(movieId);
     return data;
   }
 );
@@ -141,47 +116,38 @@ const moviesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getAllMovies.pending, (state, action) => {
+      state.status = "Loading";
+    });
     builder.addCase(getAllMovies.fulfilled, (state, action) => {
       state.status = "fulfilled";
       state.movies = action.payload.results;
       state.totalPage = action.payload.total_pages;
     });
-    builder.addCase(getAllMovies.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    // builder.addCase(getAllMoviesByName.pending, (state, action) => {
-    //   state.status = "pending";
-    //   state.currentPage = 1;
-    // });
+
     builder.addCase(getAllMoviesByName.fulfilled, (state, action) => {
       state.status = "fulfilled";
       state.movies = action.payload.results;
       state.totalPage = action.payload.total_pages;
     });
+
     builder.addCase(getAllMoviesByYear.fulfilled, (state, action) => {
       state.status = "fulfilled";
       state.movies = action.payload.results;
       state.totalPage = action.payload.total_pages;
     });
+
     builder.addCase(getAllMoviesByGenre.fulfilled, (state, action) => {
       state.status = "fulfilled";
       state.movies = action.payload.results;
       state.totalPage = action.payload.total_pages;
-    });
-    // builder.addCase(getAllImages.fulfilled, (state, action) => {
-    //   state.status = "fulfilled";
-    //   state.images = action.payload.backdrops;
-    // });
-    builder.addCase(getAllReviews.fulfilled, (state, action) => {
-      state.status = "fulfilled";
-      state.reviews = action.payload.results;
     });
   },
 });
 
 const moviesReducer = moviesSlice.reducer;
 
-export {moviesReducer};
+export { moviesReducer };
 export const {
   setMovieName,
   setPage,

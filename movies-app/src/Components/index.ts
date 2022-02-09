@@ -7,3 +7,5 @@ export * from "./MovieInfo/MovieInfo";
 export * from "./StartsRating/StarsRating";
 export * from "./GenreList/GenreList";
 export * from "./MovieImages/MovieImages";
+export * from "./MovieReviews/MovieReviews";
+export * from "./MovieReview/MovieReview";

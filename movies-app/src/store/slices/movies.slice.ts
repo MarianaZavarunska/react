@@ -3,8 +3,10 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IGenre } from "../../interfaces/genre.interface";
 import { IBackdrops } from "../../interfaces/images.interface";
 import { IMovie } from "../../interfaces/movie.interface";
+import { IReview } from "../../interfaces/reviews.interface";
 import imagesService from "../../services/images.service";
 import moviesService from "../../services/movies.service";
+import { reviewsService } from "../../services/reviews.service";
 interface ISearch {
   movieName?: string;
   currentPage: number;
@@ -19,6 +21,7 @@ interface IMoviesState {
   totalPage: number;
   isNewMovie: boolean;
   images: IBackdrops[];
+  reviews: IReview[];
   // rating: number;
   // hover: number;
 }
@@ -30,6 +33,7 @@ const initialState: IMoviesState = {
   totalPage: 1,
   isNewMovie: false,
   images: [],
+  reviews: [],
   // rating: 0,
   // hover: 0,
 };
@@ -74,9 +78,17 @@ export const getAllMoviesByGenre = createAsyncThunk(
 );
 
 export const getAllImages = createAsyncThunk(
-  "moviesSlice/getAllImages ",
+  "moviesSlice/getAllImages",
   async (movieId: number) => {
     const { data } = await imagesService.getAll(movieId);
+    return data;
+  }
+);
+
+export const getAllReviews = createAsyncThunk(
+  "moviesSlice/getAllReviews",
+  async (movieId: number) => {
+    const { data } = await reviewsService.getAll(movieId);
     return data;
   }
 );
@@ -149,6 +161,10 @@ const moviesSlice = createSlice({
     builder.addCase(getAllImages.fulfilled, (state, action) => {
       state.status = "fulfilled";
       state.images = action.payload.backdrops;
+    });
+    builder.addCase(getAllReviews.fulfilled, (state, action) => {
+      state.status = "fulfilled";
+      state.reviews = action.payload.results;
     });
   },
 });

@@ -1,7 +1,7 @@
 .movie-details-content {
   display: flex;
   flex-direction: column;
-  gap: 5%;
+  gap: 19px;
 }
 .movie-details-content > div:first-of-type {
   align-self: center;

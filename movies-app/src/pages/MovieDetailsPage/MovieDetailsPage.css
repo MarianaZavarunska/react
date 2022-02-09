@@ -4,6 +4,8 @@
   gap: 10px;
   background-color: #0448c8;
   padding: 10px;
+  height: 100vh;
+  overflow-y: auto;
 }
 .movie-info-wrapper {
   display: flex;

@@ -25,8 +25,7 @@ const videoSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAllVideos.fulfilled, (state, action) => {
       state.videos = action.payload;
-      state.videos =
-        state.videos.length > 3 ? state.videos.splice(0, 3) : state.videos;
+      state.videos = state.videos.slice(0, 3);
     });
   },
 });

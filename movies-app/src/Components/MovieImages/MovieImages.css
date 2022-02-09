@@ -1,9 +1,9 @@
 .images-container {
   display: flex;
-  gap: 35px;
+  gap: 25px;
   max-width: 990px;
   width: 100%;
-  max-height: 300px;
+  max-height: 250px;
   height: 100%;
   overflow-x: scroll;
   box-shadow: 0px 2px 3px var(--primary-color);

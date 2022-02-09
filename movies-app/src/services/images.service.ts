@@ -8,4 +8,4 @@ const imagesService = {
     ),
 };
 
-export default imagesService;
+export { imagesService };

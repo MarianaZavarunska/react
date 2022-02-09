@@ -1,8 +1,6 @@
 export interface IReviewResponse {
   id: number;
-  // page: number,
   results: IReview[];
-  // total_pages: number,
 }
 
 export interface IReview {

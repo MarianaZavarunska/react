@@ -7,6 +7,7 @@ import MovieInfo from "../../Components/MovieInfo/MovieInfo";
 import "./MovieDetailsPage.css";
 import MovieReviews from "../../Components/MovieReviews/MovieReviews";
 import { useAppSelector } from "../../hooks";
+import { MovieVideo } from "../../Components";
 
 interface IStateResponse {
   movie: IMovie;
@@ -35,6 +36,8 @@ const MovieDetailsPage: FC = () => {
         <MovieInfo movie={movie} genresName={genresName} />
       </div>
       <MovieReviews movieId={movie.id} />
+      <h2>Trailers</h2>
+      <MovieVideo movieId={movie.id} />
     </div>
   );
 };

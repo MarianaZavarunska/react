@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { useAppSelector } from "../../hooks";
-import { IReview } from "../../interfaces/reviews.interface";
+import { IReview } from "../../interfaces";
 import "./MovieReview.css";
 
 const MovieReview: FC<{ review: IReview }> = ({ review }) => {

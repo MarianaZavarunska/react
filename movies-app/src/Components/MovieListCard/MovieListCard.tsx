@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { IMG_PATH } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { IMovie } from "../../interfaces/movie.interface";
+import { IMovie } from "../../interfaces";
 import { setGenresName } from "../../store/slices";
 import StarsRating from "../StartsRating/StarsRating";
 import "./MovieListCard.css";

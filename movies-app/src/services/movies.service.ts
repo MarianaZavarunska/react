@@ -31,4 +31,4 @@ const moviesService = {
     return axios.get<IMoviesResponse>(request);
   },
 };
-export default moviesService;
+export { moviesService };

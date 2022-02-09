@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useAppSelector } from "../../hooks";
 
-import { IMovie } from "../../interfaces/movie.interface";
+import { IMovie } from "../../interfaces";
 import MovieImages from "../MovieImages/MovieImages";
 import "./MovieInfo.css";
 

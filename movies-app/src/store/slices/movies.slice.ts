@@ -1,12 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IGenre } from "../../interfaces/genre.interface";
-import { IBackdrops } from "../../interfaces/images.interface";
-import { IMovie } from "../../interfaces/movie.interface";
-import { IReview } from "../../interfaces/reviews.interface";
-import imagesService from "../../services/images.service";
-import moviesService from "../../services/movies.service";
-import { reviewsService } from "../../services/reviews.service";
+import { IMovie, IBackdrops, IGenre, IReview, IVideo } from "../../interfaces";
+import { imagesService, moviesService, reviewsService } from "../../services";
+
 interface ISearch {
   movieName?: string;
   currentPage: number;

@@ -68,4 +68,4 @@ const MovieListCard: FC<{ movie: IMovie }> = ({ movie }) => {
   );
 };
 
-export default MovieListCard;
+export { MovieListCard };

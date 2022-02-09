@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { useAppSelector } from "../../hooks";
 
+import { MovieImages } from "..";
+import { useAppSelector } from "../../hooks";
 import { IMovie } from "../../interfaces";
-import MovieImages from "../MovieImages/MovieImages";
 import "./MovieInfo.css";
 
 const MovieInfo: FC<{ movie: IMovie; genresName: string[] }> = ({
@@ -43,4 +43,4 @@ const MovieInfo: FC<{ movie: IMovie; genresName: string[] }> = ({
   );
 };
 
-export default MovieInfo;
+export { MovieInfo };

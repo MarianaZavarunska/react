@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
 
+import { MovieListCard } from "..";
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import {
   getAllMovies,
@@ -8,7 +9,8 @@ import {
   getAllMoviesByYear,
   setPage,
 } from "../../store/slices";
-import MovieListCard from "../MovieListCard/MovieListCard";
+
+
 import "./MoviesList.css";
 
 const MoviesList: FC = () => {
@@ -58,4 +60,4 @@ const MoviesList: FC = () => {
   );
 };
 
-export default MoviesList;
+export { MoviesList };

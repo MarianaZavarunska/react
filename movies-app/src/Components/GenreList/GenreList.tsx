@@ -31,4 +31,4 @@ const GenreList: FC = () => {
   );
 };
 
-export default GenreList;
+export { GenreList };

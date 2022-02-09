@@ -1,8 +1,9 @@
 import { FC, useEffect } from "react";
 
+import { MovieReview } from "..";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getAllReviews } from "../../store/slices";
-import MovieReview from "../MovieReview/MovieReview";
+
 import "./MovieReviews.css";
 
 const MovieReviews: FC<{ movieId: number }> = ({ movieId }) => {
@@ -23,4 +24,4 @@ const MovieReviews: FC<{ movieId: number }> = ({ movieId }) => {
   );
 };
 
-export default MovieReviews;
+export {MovieReviews};

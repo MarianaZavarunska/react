@@ -7,7 +7,7 @@ import "./Form.css";
 
 const Form: FC = () => {
   const { register, handleSubmit, reset } = useForm<{ movieName: string }>();
- 
+
   const dispatch = useAppDispatch();
 
   const onSubmitForm: SubmitHandler<{ movieName: string }> = (movieName) => {
@@ -25,4 +25,4 @@ const Form: FC = () => {
   );
 };
 
-export default Form;
+export { Form };

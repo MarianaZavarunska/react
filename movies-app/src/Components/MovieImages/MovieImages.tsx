@@ -24,4 +24,4 @@ const MovieImages: FC<{ movieId: number }> = ({ movieId }) => {
   );
 };
 
-export default MovieImages;
+export { MovieImages };

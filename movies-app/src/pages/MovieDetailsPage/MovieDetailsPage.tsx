@@ -3,11 +3,9 @@ import { useLocation } from "react-router-dom";
 
 import { IMovie } from "../../interfaces/movie.interface";
 import { IMG_PATH } from "../../constants/urls";
-import MovieInfo from "../../Components/MovieInfo/MovieInfo";
 import "./MovieDetailsPage.css";
-import MovieReviews from "../../Components/MovieReviews/MovieReviews";
 import { useAppSelector } from "../../hooks";
-import { MovieVideo } from "../../Components";
+import { MovieInfo, MovieReviews, MovieVideo } from "../../Components";
 
 interface IStateResponse {
   movie: IMovie;
@@ -42,4 +40,4 @@ const MovieDetailsPage: FC = () => {
   );
 };
 
-export default MovieDetailsPage;
+export { MovieDetailsPage };

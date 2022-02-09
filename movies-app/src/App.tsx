@@ -3,8 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
 import Layout from "./Components/Layout/Layout";
-import MovieDetailsPage from "./pages/MovieDetailsPage/MovieDetailsPage";
-import MoviesPage from "./pages/MoviesPage/MoviesPage";
+import { MovieDetailsPage, MoviesPage } from "./pages";
 
 const App: FC = () => {
   return (

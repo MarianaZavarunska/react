@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import MoviesList from "../../Components/MoviesList/MoviesList";
+import { MoviesList } from "../../Components";
 
 const MoviesPage: FC = () => {
   return (
@@ -10,4 +10,4 @@ const MoviesPage: FC = () => {
   );
 };
 
-export default MoviesPage;
+export { MoviesPage };

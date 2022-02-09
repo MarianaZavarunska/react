@@ -10,3 +10,4 @@ export * from "./MovieImages/MovieImages";
 export * from "./MovieReviews/MovieReviews";
 export * from "./MovieReview/MovieReview";
 export * from "./MovieVideos/MovieVideos";
+export * from "./Iframe/Iframe";

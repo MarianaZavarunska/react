@@ -17,10 +17,9 @@ const Iframe: FC<{ videoKey: string }> = ({ videoKey }) => {
         allow="autoplay; encrypted-media"
         title="video"
         className="video-container"
-        // style={{ width: "400px" }}
       />
     </div>
   );
 };
 
-export default Iframe;
+export { Iframe };

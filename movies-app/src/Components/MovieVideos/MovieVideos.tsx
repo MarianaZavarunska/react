@@ -1,8 +1,9 @@
 import { FC, useEffect } from "react";
 
+import { Iframe } from "..";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getAllVideos } from "../../store/slices";
-import Iframe from "../Iframe/Iframe";
+
 import "./MovieVideos.css";
 
 const MovieVideo: FC<{ movieId: number }> = ({ movieId }) => {
@@ -14,10 +15,7 @@ const MovieVideo: FC<{ movieId: number }> = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <div
-      className="videos-container"
-      //   style={{ display: "flex", flexWrap: "wrap" }}
-    >
+    <div className="videos-container">
       {videos &&
         videos.map((video) => <Iframe key={video.id} videoKey={video.key} />)}
     </div>

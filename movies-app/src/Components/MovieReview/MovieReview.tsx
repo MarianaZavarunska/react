@@ -20,4 +20,4 @@ const MovieReview: FC<{ review: IReview }> = ({ review }) => {
   );
 };
 
-export default MovieReview;
+export { MovieReview };

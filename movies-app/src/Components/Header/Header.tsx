@@ -1,9 +1,8 @@
 import { FC } from "react";
 
+import { Form, GenreList } from "..";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setSwitch, setYearFilter } from "../../store/slices";
-import Form from "../Form/Form";
-import GenreList from "../GenreList/GenreList";
 import "./Header.css";
 
 const Header: FC = () => {
@@ -35,4 +34,4 @@ const Header: FC = () => {
   );
 };
 
-export default Header;
+export { Header };

@@ -15,11 +15,13 @@ const moviesService = {
 
   searchMovieByName: (
     name: string | undefined,
-    currentPage: number | undefined
+    currentPage: number | undefined,
+    genreId: number | undefined
   ) => {
     url = new URL(searchURL);
     name && url.searchParams.set("query", name.toString());
     currentPage && url.searchParams.set("page", currentPage.toString());
+    genreId && url.searchParams.set("with_genres", genreId.toString());
     request = url.toString();
 
     return axios.get<IMoviesResponse>(request);
@@ -27,11 +29,13 @@ const moviesService = {
 
   searchMovieByGenre: (
     genreId: number | undefined,
-    currentPage: number | undefined
+    currentPage: number | undefined,
+    movieName: string | undefined
   ) => {
     url = new URL(movieURL);
     currentPage && url.searchParams.set("page", currentPage.toString());
     genreId && url.searchParams.set("with_genres", genreId.toString());
+    movieName && url.searchParams.set("query", movieName);
     request = url.toString();
 
     return axios.get<IMoviesResponse>(request);

@@ -35,11 +35,12 @@ export const getAllMovies = createAsyncThunk(
 export const getAllMoviesByName = createAsyncThunk(
   "moviesSlice/getAllMoviesByName",
   async (arg: IQueryParams) => {
-    const { movieName, currentPage } = arg;
+    const { movieName, currentPage, genreId } = arg;
 
     const { data } = await moviesService.searchMovieByName(
       movieName,
-      currentPage
+      currentPage,
+      genreId
     );
     return data;
   }
@@ -61,7 +62,8 @@ export const getAllMoviesByGenre = createAsyncThunk(
   async (queryParams: IQueryParams) => {
     const { data } = await moviesService.searchMovieByGenre(
       queryParams.genreId,
-      queryParams.currentPage
+      queryParams.currentPage,
+      queryParams.movieName
     );
     return data;
   }

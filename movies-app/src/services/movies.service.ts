@@ -13,18 +13,24 @@ const moviesService = {
   getAllByYear: (page: number) =>
     axios.get<IMoviesResponse>(latestMoviesURL + page),
 
-  searchMovieByName: (name: string | undefined, currentPage: number) => {
+  searchMovieByName: (
+    name: string | undefined,
+    currentPage: number | undefined
+  ) => {
     url = new URL(searchURL);
     name && url.searchParams.set("query", name.toString());
-    url.searchParams.set("page", currentPage.toString());
+    currentPage && url.searchParams.set("page", currentPage.toString());
     request = url.toString();
 
     return axios.get<IMoviesResponse>(request);
   },
 
-  searchMovieByGenre: (genreId: number | undefined, currentPage: number) => {
+  searchMovieByGenre: (
+    genreId: number | undefined,
+    currentPage: number | undefined
+  ) => {
     url = new URL(movieURL);
-    url.searchParams.set("page", currentPage.toString());
+    currentPage && url.searchParams.set("page", currentPage.toString());
     genreId && url.searchParams.set("with_genres", genreId.toString());
     request = url.toString();
 

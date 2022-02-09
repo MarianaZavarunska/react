@@ -1,3 +1,4 @@
 export * from "./movies.slice";
 export * from "./genres.slice";
 export * from "./video.slice";
+export * from "./images.slice";

@@ -6,7 +6,7 @@ import { getAllImages } from "../../store/slices";
 import "./MovieImages.css";
 
 const MovieImages: FC<{ movieId: number }> = ({ movieId }) => {
-  const { images } = useAppSelector((state) => state.moviesReducer);
+  const { images } = useAppSelector((state) => state.imagesReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

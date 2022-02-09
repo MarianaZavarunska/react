@@ -31,4 +31,4 @@ const videoSlice = createSlice({
 });
 
 const videoReducer = videoSlice.reducer;
-export default videoReducer;
+export {videoReducer};

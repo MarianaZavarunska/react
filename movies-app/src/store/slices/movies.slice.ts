@@ -1,52 +1,51 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IMovie, IBackdrops, IGenre, IReview, IVideo } from "../../interfaces";
+import { IMovie, IGenre, IReview, IQueryParams } from "../../interfaces";
 import { imagesService, moviesService, reviewsService } from "../../services";
-
-interface ISearch {
-  movieName?: string;
-  currentPage: number;
-  genreId?: number;
-}
-
 interface IMoviesState {
   movies: IMovie[];
-  movieName: string | null;
+  // movieName: string | null;
   status: string | null;
-  currentPage: number;
+  // currentPage: number;
   totalPage: number;
-  isNewMovie: boolean;
-  images: IBackdrops[];
+  // isNewMovie: boolean;
+  // images: IBackdrops[];
   reviews: IReview[];
   isSwitched: boolean;
+  queryParams: IQueryParams;
   // rating: number;
   // hover: number;
 }
 const initialState: IMoviesState = {
   movies: [],
-  movieName: null,
   status: null,
-  currentPage: 1,
+  // currentPage: 1,
   totalPage: 1,
-  isNewMovie: false,
-  images: [],
+  // isNewMovie: false,
+  // images: [],
   reviews: [],
   isSwitched: false,
+  queryParams: {
+    movieName: "",
+    currentPage: 1,
+  },
   // rating: 0,
   // hover: 0,
 };
 
 export const getAllMovies = createAsyncThunk(
   "moviesSlice/getAllMovies",
-  async (currentPage: number) => {
-    const { data } = await moviesService.getAll(currentPage);
+  async (arg: IQueryParams) => {
+    const { currentPage } = arg;
+    const { data } = await moviesService.getAll(currentPage ? currentPage : 1);
     return data;
   }
 );
 export const getAllMoviesByName = createAsyncThunk(
   "moviesSlice/getAllMoviesByName",
-  async (arg: ISearch) => {
+  async (arg: IQueryParams) => {
     const { movieName, currentPage } = arg;
+
     const { data } = await moviesService.searchMovieByName(
       movieName,
       currentPage
@@ -57,31 +56,33 @@ export const getAllMoviesByName = createAsyncThunk(
 
 export const getAllMoviesByYear = createAsyncThunk(
   "moviesSlice/getAllMoviesByYear",
-  async (currentPage: number) => {
-    const { data } = await moviesService.getAllByYear(currentPage);
+  async (arg: IQueryParams) => {
+    const { currentPage } = arg;
+    const { data } = await moviesService.getAllByYear(
+      currentPage ? currentPage : 1
+    );
     return data;
   }
 );
 
 export const getAllMoviesByGenre = createAsyncThunk(
   "moviesSlice/getAllMoviesByGenre",
-  async (arg: ISearch) => {
-    const { genreId, currentPage } = arg;
+  async (queryParams: IQueryParams) => {
     const { data } = await moviesService.searchMovieByGenre(
-      genreId,
-      currentPage
+      queryParams.genreId,
+      queryParams.currentPage
     );
     return data;
   }
 );
 
-export const getAllImages = createAsyncThunk(
-  "moviesSlice/getAllImages",
-  async (movieId: number) => {
-    const { data } = await imagesService.getAll(movieId);
-    return data;
-  }
-);
+// export const getAllImages = createAsyncThunk(
+//   "moviesSlice/getAllImages",
+//   async (movieId: number) => {
+//     const { data } = await imagesService.getAll(movieId);
+//     return data;
+//   }
+// );
 
 export const getAllReviews = createAsyncThunk(
   "moviesSlice/getAllReviews",
@@ -95,23 +96,32 @@ const moviesSlice = createSlice({
   name: "moviesSlice",
   initialState,
   reducers: {
-    setMovieName: (
-      state,
-      action: PayloadAction<{ movieName: string | null }>
-    ) => {
-      state.movieName = action.payload.movieName;
+    setMovieName: (state, action: PayloadAction<{ movieName: string }>) => {
+      state.queryParams = {
+        ...state.queryParams,
+        movieName: action.payload.movieName,
+        currentPage: 1,
+      };
     },
     setPage: (state, action: PayloadAction<{ action: number }>) => {
-      if (state.currentPage === 1 && action.payload.action === -1) return;
+      if (state.queryParams.currentPage === 1 && action.payload.action === -1)
+        return;
 
-      if (state.currentPage >= 1 && state.currentPage <= state.totalPage) {
-        state.currentPage += action.payload.action;
+      if (
+        state.queryParams.currentPage &&
+        state.queryParams.currentPage >= 1 &&
+        state.queryParams.currentPage <= state.totalPage
+      ) {
+        state.queryParams.currentPage += action.payload.action;
       }
     },
     setYearFilter: (state) => {
-      state.isNewMovie = !state.isNewMovie;
+      state.queryParams.isNewMovie = !state.queryParams.isNewMovie;
     },
-
+    setGenreId: (state, action: PayloadAction<{ genreId: string }>) => {
+      state.queryParams.genreId = +action.payload.genreId;
+      state.queryParams.currentPage = 1;
+    },
     setGenresName: (
       _, //state
       action: PayloadAction<{
@@ -158,10 +168,10 @@ const moviesSlice = createSlice({
       state.movies = action.payload.results;
       state.totalPage = action.payload.total_pages;
     });
-    builder.addCase(getAllImages.fulfilled, (state, action) => {
-      state.status = "fulfilled";
-      state.images = action.payload.backdrops;
-    });
+    // builder.addCase(getAllImages.fulfilled, (state, action) => {
+    //   state.status = "fulfilled";
+    //   state.images = action.payload.backdrops;
+    // });
     builder.addCase(getAllReviews.fulfilled, (state, action) => {
       state.status = "fulfilled";
       state.reviews = action.payload.results;
@@ -171,11 +181,12 @@ const moviesSlice = createSlice({
 
 const moviesReducer = moviesSlice.reducer;
 
-export default moviesReducer;
+export {moviesReducer};
 export const {
   setMovieName,
   setPage,
   setYearFilter,
+  setGenreId,
   setGenresName,
   setSwitch,
 } = moviesSlice.actions;

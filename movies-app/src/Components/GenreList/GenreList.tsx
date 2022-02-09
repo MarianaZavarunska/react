@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getAllGenres, setGenreName } from "../../store/slices";
+import { getAllGenres, setGenreId } from "../../store/slices";
 import "./GenreList.css";
 
 const GenreList: FC = () => {
@@ -18,7 +18,7 @@ const GenreList: FC = () => {
       <select
         // multiple={true}
         style={{ backgroundColor: isSwitched ? "darkblue" : "#05020D" }}
-        onChange={(e) => dispatch(setGenreName({ genreId: e.target.value }))}
+        onChange={(e) => dispatch(setGenreId({ genreId: e.target.value }))}
       >
         <option value={0}>All Movies</option>
         {genres.map((genre) => (

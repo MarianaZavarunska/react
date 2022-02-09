@@ -10,14 +10,12 @@ import {
   setPage,
 } from "../../store/slices";
 
-
 import "./MoviesList.css";
 
 const MoviesList: FC = () => {
-  let { movies, currentPage, movieName, isNewMovie, totalPage } =
-    useAppSelector((state) => state.moviesReducer);
-
-  const { genreId } = useAppSelector((state) => state.genresReducer);
+  let { movies, queryParams, totalPage } = useAppSelector(
+    (state) => state.moviesReducer
+  );
 
   const { isSwitched } = useAppSelector((state) => state.moviesReducer);
   const dispatch = useAppDispatch();
@@ -27,20 +25,29 @@ const MoviesList: FC = () => {
     //   ? dispatch(getAllMoviesByName(movieName))
     //   : dispatch(getAllMovies(currentPage));
 
-    if (movieName && currentPage <= totalPage) {
-      dispatch(getAllMoviesByName({ movieName, currentPage }));
+    if (
+      queryParams.movieName &&
+      queryParams.currentPage &&
+      queryParams.currentPage <= totalPage
+    ) {
+      dispatch(getAllMoviesByName(queryParams));
       return;
     }
-    if (isNewMovie === true) {
-      dispatch(getAllMoviesByYear(currentPage));
+    if (queryParams.isNewMovie === true) {
+      dispatch(getAllMoviesByYear(queryParams));
       return;
     }
-    if (genreId > 0 && currentPage <= totalPage) {
-      dispatch(getAllMoviesByGenre({ genreId, currentPage }));
+    if (
+      queryParams.genreId &&
+      queryParams.genreId > 0 &&
+      queryParams.currentPage &&
+      queryParams.currentPage <= totalPage
+    ) {
+      dispatch(getAllMoviesByGenre(queryParams));
       return;
     }
-    dispatch(getAllMovies(currentPage));
-  }, [currentPage, movieName, isNewMovie, genreId]);
+    dispatch(getAllMovies(queryParams));
+  }, [queryParams]);
 
   return (
     <div

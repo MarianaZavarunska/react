@@ -5,11 +5,9 @@ import { genresService } from "../../services";
 
 interface IGenreState {
   genres: IGenre[];
-  genreId: number;
 }
 const initialState: IGenreState = {
   genres: [],
-  genreId: 0,
 };
 
 export const getAllGenres = createAsyncThunk(
@@ -23,12 +21,7 @@ export const getAllGenres = createAsyncThunk(
 const genresSlice = createSlice({
   name: "genresSlice",
   initialState,
-  reducers: {
-    setGenreName: (state, action: PayloadAction<{ genreId: string }>) => {
-      state.genreId = +action.payload.genreId;
-      console.log(state.genreId);
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getAllGenres.fulfilled, (state, action) => {
       state.genres = action.payload;
@@ -38,5 +31,4 @@ const genresSlice = createSlice({
 
 const genresReducer = genresSlice.reducer;
 
-export const { setGenreName } = genresSlice.actions;
-export default genresReducer;
+export { genresReducer };

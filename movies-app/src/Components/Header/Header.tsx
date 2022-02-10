@@ -4,6 +4,7 @@ import { Form, GenreList } from "..";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setSwitch, setYearFilter } from "../../store/slices";
 import "./Header.css";
+import "./Header.responsive.css";
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();

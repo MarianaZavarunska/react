@@ -3,9 +3,10 @@ import { useLocation } from "react-router-dom";
 
 import { IMovie } from "../../interfaces/movie.interface";
 import { IMG_PATH } from "../../constants/urls";
-import "./MovieDetailsPage.css";
 import { useAppSelector } from "../../hooks";
 import { MovieInfo, MovieReviews, MovieVideo } from "../../Components";
+import "./MovieDetailsPage.css";
+import "./MovieDetailsPage.responsive.css";
 
 interface IStateResponse {
   movie: IMovie;

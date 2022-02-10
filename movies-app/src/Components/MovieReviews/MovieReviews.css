@@ -4,3 +4,11 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+h2 {
+  font-size: 1.7rem;
+  text-align: center;
+  letter-spacing: 3px;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  width: 200px;
+}

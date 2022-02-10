@@ -33,9 +33,7 @@ const MovieDetailsPage: FC = () => {
         </div>
         <MovieInfo movie={movie} genresName={genresName} />
       </div>
-      <h2>Reviews</h2>
       <MovieReviews movieId={movie.id} />
-      <h2>Trailers</h2>
       <MovieVideo movieId={movie.id} />
     </div>
   );

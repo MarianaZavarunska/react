@@ -15,14 +15,16 @@ const MovieReviews: FC<{ movieId: number }> = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <div className="reviews-container">
+    <div>
       {status === "pending" && <div>Loading</div>}
-
-      {status === "fulfilled" &&
-        reviews &&
-        reviews.map((review) => (
-          <MovieReview key={review.id} review={review} />
-        ))}
+      {reviews.length > 0 && <h2>Reviews</h2>}
+      <div className="reviews-container">
+        {status === "fulfilled" &&
+          reviews &&
+          reviews.map((review) => (
+            <MovieReview key={review.id} review={review} />
+          ))}
+      </div>
     </div>
   );
 };

@@ -15,9 +15,12 @@ const MovieVideo: FC<{ movieId: number }> = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <div className="videos-container">
-      {videos &&
-        videos.map((video) => <Iframe key={video.id} videoKey={video.key} />)}
+    <div>
+      {videos.length > 0 && <h2>Trailers</h2>}
+      <div className="videos-container">
+        {videos &&
+          videos.map((video) => <Iframe key={video.id} videoKey={video.key} />)}
+      </div>
     </div>
   );
 };

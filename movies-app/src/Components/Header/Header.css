@@ -20,6 +20,7 @@
   color: var(--white-color);
   width: 80px;
   text-align: center;
+  border: none;
   border-radius: 3px;
   padding: 5px;
   margin: 5px;
@@ -30,6 +31,8 @@
 }
 
 .year-container {
+  background-color: transparent;
+  border: none;
   color: var(--white-color);
   font-size: 1.1rem;
 }

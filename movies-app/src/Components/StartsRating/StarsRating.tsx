@@ -1,29 +1,25 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
-import "./StarsRating.css";
+const StarsRating: FC<{ rating: number }> = ({ rating }) => {
+  let rate = Math.round((rating / 10) * 5);
 
-const StarsRating: FC = () => {
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
   return (
     <div className="star-rating">
-      {[...Array(5)].map((star, index) => {
-        index += 1;
-        return (
-          <button
-            type="button"
-            key={index}
-            className={index <= (hover || rating) ? "on" : "off"}
-            onClick={() => setRating(index)}
-            onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(rating)}
-          >
-            <span className="star">&#9733;</span>
-          </button>
-        );
-      })}
+      {[...Array(5)].map((star, index) => (
+        <button
+          type="button"
+          key={index}
+          style={{
+            color: index < rate ? "yellow" : "grey",
+            backgroundColor: "transparent",
+            border: "none",
+          }}
+        >
+          <span className="star">&#9733;</span>
+        </button>
+      ))}
     </div>
   );
 };
 
-export default StarsRating;
+export { StarsRating };

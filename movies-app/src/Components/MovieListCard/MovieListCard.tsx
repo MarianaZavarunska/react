@@ -5,7 +5,7 @@ import { IMG_PATH } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { IMovie } from "../../interfaces";
 import { setGenresName } from "../../store/slices";
-import StarsRating from "../StartsRating/StarsRating";
+import { StarsRating } from "..";
 import "./MovieListCard.css";
 
 const MovieListCard: FC<{ movie: IMovie }> = ({ movie }) => {
@@ -58,7 +58,7 @@ const MovieListCard: FC<{ movie: IMovie }> = ({ movie }) => {
             genresName.map((genre) => <span key={genre}>{genre}</span>)}
         </div>
 
-        <StarsRating />
+        <StarsRating rating={movie.vote_average} />
       </div>
 
       {movie.overview && (

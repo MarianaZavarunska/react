@@ -8,7 +8,7 @@ interface IMoviesState {
   totalPage: number;
   isSwitched: boolean;
   queryParams: IQueryParams;
-  // rating: number;
+  rating: number;
   // hover: number;
 }
 const initialState: IMoviesState = {
@@ -20,7 +20,7 @@ const initialState: IMoviesState = {
     movieName: "",
     currentPage: 1,
   },
-  // rating: 0,
+  rating: 0,
   // hover: 0,
 };
 

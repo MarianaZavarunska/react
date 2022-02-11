@@ -12,3 +12,5 @@ export * from "./MovieReview/MovieReview";
 export * from "./MovieVideos/MovieVideos";
 export * from "./Iframe/Iframe";
 export * from "./MovieFilter/MovieFilter";
+export * from "./UserInfo/UserInfo";
+export * from "./Logo/Logo";

@@ -1,0 +1,19 @@
+.user-info-container {
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-info-container > img {
+  width: 50px;
+  color: var(--primary-color);
+  border: 2px solid var(--white-color);
+  border-radius: 50%;
+}
+.user-info-container > div {
+  letter-spacing: 2px;
+}
+
+.user-info-container.on {
+  background-color: var(--secondary-color);
+}

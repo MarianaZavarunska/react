@@ -50,10 +50,7 @@ const MoviesList: FC = () => {
   }, [queryParams]);
 
   return (
-    <div
-      className="movies-page"
-      style={{ backgroundColor: isSwitched ? "#fff" : "#0448c8" }}
-    >
+    <div className="movies-page">
       <MovieFilter />
       <div className="nav-btns">
         <button onClick={() => dispatch(setPage({ action: -1 }))}>Prev</button>

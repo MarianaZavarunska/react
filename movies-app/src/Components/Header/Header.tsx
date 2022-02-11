@@ -12,10 +12,13 @@ const Header: FC = () => {
   return (
     <div
       className="header"
-      style={{ backgroundColor: isSwitched ? "darkblue" : "#05020D" }}
+      style={{
+        backgroundColor: isSwitched ? "#02286e" : "#05020D",
+        height: isSwitched ? "80px" : "inherit",
+      }}
     >
       <div className="logo" style={{ display: isSwitched ? "none" : "block" }}>
-        <img src={require("./logo_preview_rev_2.jpeg")} alt="logo" />
+        <img src={require("../../photos/logo.png")} alt="logo" />
       </div>
       <div>
         <button
@@ -27,8 +30,17 @@ const Header: FC = () => {
       </div>
       <GenreList />
       <Form />
-      <div className="sign-btn">Sign In</div>
-      <button onClick={() => dispatch(setSwitch())} className="switch-btn">
+      <div
+        className="sign-btn"
+        style={{ backgroundColor: isSwitched ? "#05020D" : "#02286e" }}
+      >
+        Sign In
+      </div>
+      <button
+        onClick={() => dispatch(setSwitch())}
+        className="switch-btn"
+        style={{ backgroundColor: isSwitched ? "#05020D" : "#02286e" }}
+      >
         Switch Theme
       </button>
     </div>

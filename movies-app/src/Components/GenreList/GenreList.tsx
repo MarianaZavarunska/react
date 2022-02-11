@@ -17,7 +17,7 @@ const GenreList: FC = () => {
     <form className="dropdown-container">
       <select
         // multiple={true}
-        style={{ backgroundColor: isSwitched ? "darkblue" : "#05020D" }}
+        style={{ backgroundColor: isSwitched ? "transparent" : "#05020D" }}
         onChange={(e) => dispatch(setGenreId({ genreId: e.target.value }))}
       >
         <option value={0}>All Movies</option>

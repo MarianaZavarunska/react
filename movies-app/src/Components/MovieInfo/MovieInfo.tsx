@@ -22,10 +22,19 @@ const MovieInfo: FC<{ movie: IMovie; genresName: string[] }> = ({
 
       <div
         className="genre-movie-container"
-        style={{ color: isSwitched ? "#fff" : "#05020D" }}
+        style={{
+          color: isSwitched ? "#fff" : "#05020D",
+        }}
       >
         {genresName &&
-          genresName.map((genre, index) => <span key={index}>{genre}</span>)}
+          genresName.map((genre, index) => (
+            <span
+              style={{ backgroundColor: isSwitched ? "#05020D" : "#02286e" }}
+              key={index}
+            >
+              {genre}
+            </span>
+          ))}
       </div>
 
       <div>

@@ -1,15 +1,12 @@
-.movies-page {
-  background-color: var(--secondary-color);
-}
-
 .nav-btns {
   display: flex;
   justify-content: center;
 }
 .nav-btns > button {
   background-color: var(--primary-color);
-  width: 50px;
+  width: 60px;
   border: none;
+  border-radius: 3px;
   color: var(--white-color);
   text-align: center;
   padding: 5px;

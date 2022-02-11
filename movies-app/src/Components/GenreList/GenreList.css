@@ -3,4 +3,8 @@
   font-size: 1.1rem;
   color: var(--white-color);
   border: none;
+  border-bottom: 1px solid var(--secondary-color);
+  border-right: 1px solid var(--secondary-color);
+  border-bottom-right-radius: 10px;
+  padding: 3px;
 }

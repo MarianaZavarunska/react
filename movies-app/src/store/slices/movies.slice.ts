@@ -115,6 +115,7 @@ const moviesSlice = createSlice({
     },
     setSwitch: (state) => {
       state.isSwitched = !state.isSwitched;
+      document.body.classList.toggle("on");
     },
     clearFilter: (state) => {
       state.queryParams.movieName = "";

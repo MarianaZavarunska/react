@@ -9,7 +9,7 @@ const MovieReview: FC<{ review: IReview }> = ({ review }) => {
   return (
     <div
       className="review-container"
-      style={{ backgroundColor: isSwitched ? "#05020D" : "#0448c8" }}
+      style={{ backgroundColor: isSwitched ? "#05020D" : "#02286e" }}
     >
       <div>{review.author}</div>
       <div className="review-date">

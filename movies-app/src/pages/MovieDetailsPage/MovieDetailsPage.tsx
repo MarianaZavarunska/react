@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { useLocation } from "react-router-dom";
 
+import { useAppSelector } from "../../hooks";
 import { IMovie } from "../../interfaces/movie.interface";
 import { IMG_PATH } from "../../constants/urls";
-import { useAppSelector } from "../../hooks";
 import { MovieInfo, MovieReviews, MovieVideo } from "../../Components";
 import "./MovieDetailsPage.css";
 import "./MovieDetailsPage.responsive.css";
@@ -21,10 +21,9 @@ const MovieDetailsPage: FC = () => {
 
   return (
     <div
-      className="movie-details-container"
-      style={{
-        backgroundColor: isSwitched ? "#fff" : "#0448c8",
-      }}
+      className={
+        isSwitched ? "movie-details-container on" : "movie-details-container"
+      }
     >
       <div className="movie-info-wrapper">
         <div className="poster-container">

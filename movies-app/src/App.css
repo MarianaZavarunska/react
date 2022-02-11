@@ -7,6 +7,10 @@
   --change-color: rgba(117, 158, 206, 0.445);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--secondary-color);
   transition: all 0.3s ease-in-out;

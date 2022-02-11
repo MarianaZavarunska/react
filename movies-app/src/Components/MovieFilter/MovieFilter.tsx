@@ -10,12 +10,14 @@ const MovieFilter: FC = () => {
 
   return (
     <div className="filter-container">
-      {queryParams.genreId && <div>Genre: {queryParams.genreId}</div>}
+      {queryParams.genreIds && queryParams.genreIds?.length > 0 && (
+        <div>Genre: {queryParams.genreIds.join(",")}</div>
+      )}
       {queryParams.movieName && <div>Name: {queryParams.movieName}</div>}
       {queryParams.currentPage && queryParams.currentPage > 1 && (
         <div>Page: {queryParams.currentPage}</div>
       )}
-      {(queryParams.genreId ||
+      {(queryParams.genreIds?.length ||
         queryParams.movieName ||
         (queryParams.currentPage && queryParams.currentPage > 1)) && (
         <button onClick={() => dispatch(clearFilter())}>Clear</button>

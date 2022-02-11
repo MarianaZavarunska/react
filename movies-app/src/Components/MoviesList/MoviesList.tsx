@@ -37,8 +37,8 @@ const MoviesList: FC = () => {
       return;
     }
     if (
-      queryParams.genreId &&
-      queryParams.genreId > 0 &&
+      queryParams.genreIds &&
+      queryParams.genreIds.length > 0 &&
       queryParams.currentPage &&
       queryParams.currentPage <= totalPage
     ) {

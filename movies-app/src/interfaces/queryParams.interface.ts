@@ -2,5 +2,6 @@ export interface IQueryParams {
   currentPage?: number;
   movieName?: string;
   isNewMovie?: boolean;
-  genreId?: number;
+  // genreId?: number;
+  genreIds?: number[];
 }

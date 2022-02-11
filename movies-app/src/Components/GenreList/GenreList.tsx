@@ -1,12 +1,14 @@
 import { FC, useEffect } from "react";
+import { AiOutlineCheck } from "react-icons/ai";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getAllGenres, setGenreId } from "../../store/slices";
+import { getAllGenres, setGenresId, toggleDropdown } from "../../store/slices";
 import "./GenreList.css";
 
 const GenreList: FC = () => {
-  const { genres, status } = useAppSelector((state) => state.genresReducer);
-  const { isSwitched } = useAppSelector((state) => state.moviesReducer);
+  const { genres, toggleGenres } = useAppSelector((state) => state.genresReducer);
+
+  const { queryParams, isSwitched, status } = useAppSelector((state) => state.moviesReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -14,25 +16,62 @@ const GenreList: FC = () => {
   }, []);
 
   return (
-    <form className="dropdown-container">
-      <select
-        // multiple={true}
-        style={{ backgroundColor: isSwitched ? "transparent" : "#05020D" }}
-        onChange={(e) => dispatch(setGenreId({ genreId: e.target.value }))}
-      >
-        <option value={0}>All Movies</option>
+    <div onMouseLeave={() => dispatch(toggleDropdown())}>
+      <button
+        className="genre-btn"
+        onClick={() => dispatch(toggleDropdown())}
+        style={{ backgroundColor: isSwitched ? "#05020D" : "#02286e" }}>
 
-        {status === "pending" && <option>Loading</option>}
+        Selected: 
+        {queryParams.genreIds?.length && queryParams.genreIds[0] !== 0
+          ? queryParams.genreIds.length : 0}
+      </button>
 
-        {status === "fulfilled" &&
-          genres.map((genre) => (
-            <option key={genre.id} value={genre.id}>
-              {genre.name}
-            </option>
-          ))}
-      </select>
-    </form>
+      <div style={{ position: "relative" }}>
+        <ul
+          style={{ display: toggleGenres ? "" : "none" }}
+          className="genre-dropdown" >
+
+          <li>
+            <div onClick={() => dispatch(setGenresId({ genreId: 0 }))}>All</div>
+          </li>
+
+          {status === "fulfilled" && genres.map((genre) => (
+              <li key={genre.id}>
+                <div onClick={() => dispatch(setGenresId({ genreId: genre.id }))}>
+                  {queryParams.genreIds &&
+                  queryParams.genreIds.includes(genre.id) ? (
+                    <AiOutlineCheck size={20} />) : (" ")} {genre.name}
+                </div>
+              </li> 
+            ))
+          } 
+        </ul>
+      </div>
+    </div>
   );
 };
 
 export { GenreList };
+
+{
+  /* <form className="dropdown-container">
+<select
+  multiple
+  size={4}
+  style={{ backgroundColor: isSwitched ? "transparent" : "#05020D" }}
+  onChange={(e) => dispatch(setGenreId({ genreId: e.target.value }))}
+>
+  <option value={0}>All Movies</option>
+
+  {status === "pending" && <option>Loading</option>}
+
+  {status === "fulfilled" &&
+    genres.map((genre) => (
+      <option key={genre.id} value={genre.id}>
+        {genre.name}
+      </option>
+    ))}
+</select>
+</form> */
+}

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IGenre } from "../../interfaces";
 import { genresService } from "../../services";
@@ -6,10 +6,12 @@ import { genresService } from "../../services";
 interface IGenreState {
   genres: IGenre[];
   status: string;
+  toggleGenres: boolean;
 }
 const initialState: IGenreState = {
   genres: [],
   status: "",
+  toggleGenres: false,
 };
 
 export const getAllGenres = createAsyncThunk(
@@ -27,7 +29,11 @@ export const getAllGenres = createAsyncThunk(
 const genresSlice = createSlice({
   name: "genresSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    toggleDropdown: (state) => {
+      state.toggleGenres = !state.toggleGenres;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getAllGenres.pending, (state, action) => {
       state.status = "pending";
@@ -40,5 +46,5 @@ const genresSlice = createSlice({
 });
 
 const genresReducer = genresSlice.reducer;
-
+export const { toggleDropdown } = genresSlice.actions;
 export { genresReducer };

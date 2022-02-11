@@ -19,6 +19,7 @@ const initialState: IMoviesState = {
   queryParams: {
     movieName: "",
     currentPage: 1,
+    genreIds: [],
   },
   rating: 0,
   isLogin: true,
@@ -35,12 +36,12 @@ export const getAllMovies = createAsyncThunk(
 export const getAllMoviesByName = createAsyncThunk(
   "moviesSlice/getAllMoviesByName",
   async (arg: IQueryParams) => {
-    const { movieName, currentPage, genreId } = arg;
+    const { movieName, currentPage, genreIds } = arg;
 
     const { data } = await moviesService.searchMovieByName(
       movieName,
       currentPage,
-      genreId
+      genreIds
     );
     return data;
   }
@@ -61,7 +62,7 @@ export const getAllMoviesByGenre = createAsyncThunk(
   "moviesSlice/getAllMoviesByGenre",
   async (queryParams: IQueryParams) => {
     const { data } = await moviesService.searchMovieByGenre(
-      queryParams.genreId,
+      queryParams.genreIds,
       queryParams.currentPage,
       queryParams.movieName
     );
@@ -95,8 +96,13 @@ const moviesSlice = createSlice({
     setYearFilter: (state) => {
       state.queryParams.isNewMovie = !state.queryParams.isNewMovie;
     },
-    setGenreId: (state, action: PayloadAction<{ genreId: string }>) => {
-      state.queryParams.genreId = +action.payload.genreId;
+    setGenresId: (state, action: PayloadAction<{ genreId: number }>) => {
+      if (action.payload.genreId === 0) {
+        state.queryParams.genreIds?.length && (state.queryParams.genreIds = []);
+      } else {
+        !state.queryParams.genreIds?.includes(action.payload.genreId) &&
+          state.queryParams.genreIds?.push(action.payload.genreId);
+      }
       state.queryParams.currentPage = 1;
     },
     setGenresName: (
@@ -125,7 +131,7 @@ const moviesSlice = createSlice({
     clearFilter: (state) => {
       state.queryParams.movieName = "";
       state.queryParams.currentPage = 1;
-      state.queryParams.genreId = undefined;
+      state.queryParams.genreIds = [];
     },
   },
   extraReducers: (builder) => {
@@ -165,7 +171,7 @@ export const {
   setMovieName,
   setPage,
   setYearFilter,
-  setGenreId,
+  setGenresId,
   setGenresName,
   setSwitch,
   setLogin,

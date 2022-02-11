@@ -6,10 +6,10 @@
   height: 100vh;
   overflow-y: auto;
 
-  background-image: url("../../photos/pexels-girl.jpg");
+  /* background-image: url("../../photos/pexels-girl.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 .movie-info-wrapper {
   display: flex;
@@ -19,8 +19,4 @@
 .poster-container > img {
   width: 400px;
   box-shadow: 0px 5px 10px var(--primary-color);
-}
-.movie-details-container.on {
-  /* background-image: url("../../photos/pexels-girls.jpg"); */
-  background-image: none;
 }

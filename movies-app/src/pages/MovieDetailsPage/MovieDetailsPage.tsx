@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useLocation } from "react-router-dom";
 
-import { useAppSelector } from "../../hooks";
 import { IMovie } from "../../interfaces/movie.interface";
 import { IMG_PATH } from "../../constants/urls";
 import { MovieInfo, MovieReviews, MovieVideo } from "../../Components";
@@ -17,14 +16,8 @@ const MovieDetailsPage: FC = () => {
   const location = useLocation();
   const { movie, genresName } = location.state as IStateResponse;
 
-  const { isSwitched } = useAppSelector((state) => state.moviesReducer);
-
   return (
-    <div
-      className={
-        isSwitched ? "movie-details-container on" : "movie-details-container"
-      }
-    >
+    <div className="movie-details-container">
       <div className="movie-info-wrapper">
         <div className="poster-container">
           {movie.poster_path !== null && (

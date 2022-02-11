@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Form, GenreList, UserInfo, Logo } from "..";
+import { Form, GenreList, UserInfo, Logo, ThermeSwitcher } from "..";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setLogin, setSwitch, setYearFilter } from "../../store/slices";
 import "./Header.css";
@@ -22,13 +22,14 @@ const Header: FC = () => {
     >
       <Logo />
 
-      <button
+      {/* <button
         onClick={() => dispatch(setSwitch())}
         className="switch-btn"
         style={{ backgroundColor: isSwitched ? "#05020D" : "#02286e" }}
       >
         Switch Theme
-      </button>
+      </button> */}
+      <ThermeSwitcher />
 
       <div>
         <button

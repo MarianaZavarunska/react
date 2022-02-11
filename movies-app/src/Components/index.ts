@@ -14,3 +14,4 @@ export * from "./Iframe/Iframe";
 export * from "./MovieFilter/MovieFilter";
 export * from "./UserInfo/UserInfo";
 export * from "./Logo/Logo";
+export * from "./ThermeSwitcher/ThermeSwitcher";

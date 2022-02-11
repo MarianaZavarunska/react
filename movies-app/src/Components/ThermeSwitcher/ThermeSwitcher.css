@@ -1,0 +1,9 @@
+@import "~antd/dist/antd.css";
+
+.ant-switch {
+  background-color: var(--secondary-color);
+  width: 80px;
+}
+.ant-switch-checked {
+  background-color: var(--primary-color);
+}

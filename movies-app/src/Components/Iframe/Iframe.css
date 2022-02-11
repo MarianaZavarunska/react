@@ -11,3 +11,9 @@
   box-shadow: 0 10px 15px var(--white-color);
   transform: translateY(-50%);
 }
+.video-container:nth-of-type(3n):hover {
+  width: 450px;
+  height: 250px;
+  box-shadow: 0 10px 15px var(--white-color);
+  transform: translateY(0);
+}

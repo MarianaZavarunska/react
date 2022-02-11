@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { Form, GenreList, UserInfo, Logo, ThermeSwitcher } from "..";
+import { Form, GenreList, UserInfo, Logo, ThemeSwitcher } from "..";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { setLogin, setSwitch, setYearFilter } from "../../store/slices";
+import { setLogin, setYearFilter } from "../../store/slices";
 import "./Header.css";
 import "./Header.responsive.css";
 
@@ -29,7 +29,7 @@ const Header: FC = () => {
       >
         Switch Theme
       </button> */}
-      <ThermeSwitcher />
+      <ThemeSwitcher />
 
       <div>
         <button

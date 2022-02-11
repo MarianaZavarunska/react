@@ -11,10 +11,13 @@ const UserInfo: FC = () => {
   return (
     <div
       className={isSwitched ? "user-info-container on" : "user-info-container"}
-      style={{ display: isLogin ? "flex" : "none" }}
     >
-      <img src={require("../../photos/female-user.png")} alt="user" />
-      <div>Mariana</div>
+      <img
+        src={require("../../photos/female-user.png")}
+        alt="user"
+        style={{ display: isLogin ? "block" : "none" }}
+      />
+      <div style={{ display: isLogin ? "block" : "none" }}>Mariana</div>
     </div>
   );
 };

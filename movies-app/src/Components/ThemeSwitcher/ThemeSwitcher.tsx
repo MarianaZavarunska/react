@@ -2,10 +2,10 @@ import { FC } from "react";
 import { Switch } from "antd";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import "./ThermeSwitcher.css";
+import "./ThemeSwitcher.css";
 import { setSwitch } from "../../store/slices";
 
-const ThermeSwitcher: FC = () => {
+const ThemeSwitcher: FC = () => {
   //   const { isLogin } = useAppSelector((state) => state.moviesReducer);
   const dispatch = useAppDispatch();
 
@@ -16,4 +16,4 @@ const ThermeSwitcher: FC = () => {
   );
 };
 
-export { ThermeSwitcher };
+export { ThemeSwitcher };

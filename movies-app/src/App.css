@@ -1,3 +1,5 @@
+@import "~antd/dist/antd.css";
+
 :root {
   --primary-color: #05070d;
   --secondary-color: #02286e;
@@ -7,6 +9,7 @@
 
 body {
   background-color: var(--secondary-color);
+  transition: all 0.3s ease-in-out;
   padding: 0;
   margin: 0;
 }

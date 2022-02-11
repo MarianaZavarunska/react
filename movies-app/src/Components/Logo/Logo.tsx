@@ -1,13 +1,18 @@
 import { FC } from "react";
 
 import { useAppSelector } from "../../hooks";
+import "./Logo.css";
 
 const Logo: FC = () => {
   const { isSwitched } = useAppSelector((state) => state.moviesReducer);
 
   return (
-    <div className="logo" style={{ display: isSwitched ? "none" : "block" }}>
-      <img src={require("../../photos/logo.png")} alt="logo" />
+    <div className="logo">
+      <img
+        src={require("../../photos/logo.png")}
+        alt="logo"
+        style={{ display: isSwitched ? "none" : "block" }}
+      />
     </div>
   );
 };

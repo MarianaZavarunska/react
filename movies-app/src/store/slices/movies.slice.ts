@@ -117,9 +117,11 @@ const moviesSlice = createSlice({
       state.isSwitched = !state.isSwitched;
       document.body.classList.toggle("on");
     },
+
     setLogin: (state) => {
       state.isLogin = !state.isLogin;
     },
+
     clearFilter: (state) => {
       state.queryParams.movieName = "";
       state.queryParams.currentPage = 1;

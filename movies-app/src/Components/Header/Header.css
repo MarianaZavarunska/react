@@ -10,12 +10,6 @@
   border-bottom-right-radius: 100px;
 }
 
-.logo img {
-  width: 90px;
-  height: 80px;
-  color: var(--primary-color);
-}
-
 .sign-btn,
 .switch-btn {
   background-color: var(--secondary-color);

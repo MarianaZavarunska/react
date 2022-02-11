@@ -9,5 +9,6 @@ h2 {
   letter-spacing: 3px;
   color: var(--white-color);
   background-color: var(--primary-color);
+  border-radius: 3px;
   width: 200px;
 }

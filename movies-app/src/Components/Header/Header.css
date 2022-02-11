@@ -10,8 +10,7 @@
   border-bottom-right-radius: 100px;
 }
 
-.sign-btn,
-.switch-btn {
+.sign-btn {
   background-color: var(--secondary-color);
   color: var(--white-color);
   font-size: 0.9rem;
@@ -21,9 +20,6 @@
   border-radius: 3px;
   padding: 5px;
   margin: 5px;
-}
-.switch-btn {
-  width: 120px;
 }
 
 .year-container {

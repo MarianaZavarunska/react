@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 
-import { MovieFilter, MovieListCard } from "..";
+import { MovieFilter, MovieListCard, SocialMedia } from "..";
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import {
   getAllMovies,
@@ -17,7 +17,6 @@ const MoviesList: FC = () => {
     (state) => state.moviesReducer
   );
 
-  const { isSwitched } = useAppSelector((state) => state.moviesReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -56,6 +55,8 @@ const MoviesList: FC = () => {
         <button onClick={() => dispatch(setPage({ action: -1 }))}>Prev</button>
         <button onClick={() => dispatch(setPage({ action: 1 }))}>Next</button>
       </div>
+      <SocialMedia />
+
       <div className="movies-container">
         {status === "pending" && <h1>Loading</h1>}
 

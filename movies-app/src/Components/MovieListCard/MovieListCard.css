@@ -1,5 +1,5 @@
 .movie-card {
-  width: 325px;
+  width: 300px;
   text-decoration: none;
   background-color: var(--primary-color);
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.856);

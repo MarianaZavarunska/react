@@ -22,13 +22,6 @@ const Header: FC = () => {
     >
       <Logo />
 
-      {/* <button
-        onClick={() => dispatch(setSwitch())}
-        className="switch-btn"
-        style={{ backgroundColor: isSwitched ? "#05020D" : "#02286e" }}
-      >
-        Switch Theme
-      </button> */}
       <ThemeSwitcher />
 
       <div>

@@ -1,12 +1,11 @@
 import { FC } from "react";
 import { Switch } from "antd";
 
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import "./ThemeSwitcher.css";
+import { useAppDispatch } from "../../hooks";
 import { setSwitch } from "../../store/slices";
+import "./ThemeSwitcher.css";
 
 const ThemeSwitcher: FC = () => {
-  //   const { isLogin } = useAppSelector((state) => state.moviesReducer);
   const dispatch = useAppDispatch();
 
   return (

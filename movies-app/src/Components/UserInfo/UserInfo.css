@@ -19,4 +19,5 @@
 
 .user-info-container.on {
   background-color: var(--secondary-color);
+  color: var(--white-color);
 }

@@ -9,7 +9,7 @@ const Logo: FC = () => {
   return (
     <div className="logo">
       <img
-        src={require("../../photos/logo.png")}
+        src={require("../../images/logo.png")}
         alt="logo"
         style={{ display: isSwitched ? "none" : "block" }}
       />

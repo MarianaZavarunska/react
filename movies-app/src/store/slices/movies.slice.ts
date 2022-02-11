@@ -9,7 +9,7 @@ interface IMoviesState {
   isSwitched: boolean;
   queryParams: IQueryParams;
   rating: number;
-  // hover: number;
+  isLogin: boolean;
 }
 const initialState: IMoviesState = {
   movies: [],
@@ -21,7 +21,7 @@ const initialState: IMoviesState = {
     currentPage: 1,
   },
   rating: 0,
-  // hover: 0,
+  isLogin: true,
 };
 
 export const getAllMovies = createAsyncThunk(
@@ -117,6 +117,9 @@ const moviesSlice = createSlice({
       state.isSwitched = !state.isSwitched;
       document.body.classList.toggle("on");
     },
+    setLogin: (state) => {
+      state.isLogin = !state.isLogin;
+    },
     clearFilter: (state) => {
       state.queryParams.movieName = "";
       state.queryParams.currentPage = 1;
@@ -163,5 +166,6 @@ export const {
   setGenreId,
   setGenresName,
   setSwitch,
+  setLogin,
   clearFilter,
 } = moviesSlice.actions;

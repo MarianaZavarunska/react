@@ -38,7 +38,12 @@
 
 --- респонсів дезайн для iphone 12 pro , тестила на телефоні ( ну таке собі )
 
--- reactWitchValue не використовувала, щось не дуже виходило тіпізувати 
+
+
+-- читала що createAsyncThunk не обов'язково типізувати, вони підкапотом вже типізуються ??
+але все ж пізніше я типізувала ЇХ
+
+ reactWitchValue не використовувала, щось не дуже виходило тіпізувати (лише типізувала video.slice)
 
 (  if (err instanceof Error) return rejectWithValue(err.message);
      return String(err);)

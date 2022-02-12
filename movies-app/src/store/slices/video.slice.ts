@@ -5,17 +5,30 @@ import { videoService } from "../../services";
 
 interface IVideoState {
   videos: IVideo[];
+  errors: string | unknown;
 }
 const initialState: IVideoState = {
   videos: [],
+  errors: "",
 };
+interface getAllVideosError{
+  message: string | unknown
+}
 
-export const getAllVideos = createAsyncThunk(
+export const getAllVideos = createAsyncThunk<IVideo[],number, {rejectValue: getAllVideosError}>(
   "videoSlice/getAllVideo",
-  async (movieId: number) => {
-    const { data } = await videoService.getAll(movieId);
-    return data.results;
-  }
+  async ( movieId,{rejectWithValue} ) => {
+      try {
+      const { data } = await videoService.getAll(movieId);
+      return data.results;
+    
+      } catch (message) {
+        //  if (err instanceof Error) return rejectWithValue(err.message)
+        // if(typeof message === 'string' ) return rejectWithValue({message})
+        return rejectWithValue({message})
+      }
+    }
+    
 );
 
 const videoSlice = createSlice({
@@ -26,6 +39,9 @@ const videoSlice = createSlice({
     builder.addCase(getAllVideos.fulfilled, (state, action) => {
       state.videos = action.payload;
       state.videos = state.videos.slice(0, 3);
+    });
+    builder.addCase(getAllVideos.rejected, (state, action) => {
+      state.errors = action.payload?.message;
     });
   },
 });

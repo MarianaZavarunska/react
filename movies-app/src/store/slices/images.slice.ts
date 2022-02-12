@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { IBackdrops } from "../../interfaces";
+import { IBackdrops,IMages } from "../../interfaces";
 import { imagesService } from "../../services";
 
 interface ImagesState {
@@ -14,9 +14,9 @@ const initialState: ImagesState = {
   //   error: null,
 };
 
-export const getAllImages = createAsyncThunk(
+export const getAllImages = createAsyncThunk<IMages | undefined ,number>(
   "imagesSlice /getAllImages",
-  async (movieId: number) => {
+  async (movieId) => {
     //{ rejectWithValue }
     try {
       const { data } = await imagesService.getAll(movieId);

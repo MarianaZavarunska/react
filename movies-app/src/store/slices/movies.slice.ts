@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IMovie, IGenre, IQueryParams } from "../../interfaces";
+import { IMovie, IGenre, IQueryParams, IMoviesResponse } from "../../interfaces";
 import { moviesService } from "../../services";
 interface IMoviesState {
   movies: IMovie[];
@@ -25,9 +25,9 @@ const initialState: IMoviesState = {
   isLogin: true,
 };
 
-export const getAllMovies = createAsyncThunk(
+export const getAllMovies = createAsyncThunk<IMoviesResponse,IQueryParams>(
   "moviesSlice/getAllMovies",
-  async (arg: IQueryParams) => {
+  async (arg) => {
     const { currentPage } = arg;
     const { data } = await moviesService.getAll(currentPage ? currentPage : 1);
     return data;

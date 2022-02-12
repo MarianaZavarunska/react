@@ -14,7 +14,7 @@ const initialState: IGenreState = {
   toggleGenres: false,
 };
 
-export const getAllGenres = createAsyncThunk(
+export const getAllGenres = createAsyncThunk<IGenre[] | undefined,void>(
   "genresSlice/getAllGenres",
   async () => {
     try {

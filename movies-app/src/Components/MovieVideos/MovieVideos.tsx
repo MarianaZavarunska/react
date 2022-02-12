@@ -7,7 +7,7 @@ import { getAllVideos } from "../../store/slices";
 import "./MovieVideos.css";
 
 const MovieVideo: FC<{ movieId: number }> = ({ movieId }) => {
-  const { videos } = useAppSelector((state) => state.videoReducer);
+  const { videos,errors } = useAppSelector((state) => state.videoReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const MovieVideo: FC<{ movieId: number }> = ({ movieId }) => {
 
   return (
     <div>
+      {/* {errors &&  <h1>{errors}</h1> } */}
       {videos.length > 0 && <h2>Trailers</h2>}
       <div className="videos-container">
         {videos &&

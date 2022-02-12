@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { IReview } from "../../interfaces";
+import { IReview, IReviewResponse } from "../../interfaces";
 import { reviewsService } from "../../services";
 
 interface IReviewState {
@@ -12,9 +12,9 @@ const initialState: IReviewState = {
   status: "",
 };
 
-export const getAllReviews = createAsyncThunk(
+export const getAllReviews = createAsyncThunk<IReviewResponse | undefined,number>(
   "moviesSlice/getAllReviews",
-  async (movieId: number) => {
+  async (movieId) => {
     try {
       const { data } = await reviewsService.getAll(movieId);
       return data;

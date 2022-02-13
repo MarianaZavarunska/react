@@ -27,7 +27,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 5px;
+  gap: 3px;
+  height: 170px;
   margin: 10px;
 }
 .movie-info > div:first-of-type {
@@ -45,6 +46,7 @@
 .genre-badge {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 10px;
   margin: 3px 0;
 }

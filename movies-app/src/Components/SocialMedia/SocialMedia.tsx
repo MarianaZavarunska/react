@@ -4,6 +4,7 @@ import { MdAlternateEmail } from "react-icons/md";
 
 import { useAppSelector } from "../../hooks";
 import "./SocialMedia.css";
+import "./SocialMedia.response.css";
 
 const SocialMedia: FC = () => {
   const { isSwitched } = useAppSelector((state) => state.moviesReducer);

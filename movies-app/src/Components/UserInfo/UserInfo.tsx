@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { useAppSelector } from "../../hooks";
 import "./UserInfo.css";
+import "./UserInfo.response.css";
 
 const UserInfo: FC = () => {
   const { isSwitched, isLogin } = useAppSelector(

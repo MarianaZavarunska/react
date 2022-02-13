@@ -16,8 +16,7 @@ const Header: FC = () => {
     <div
       className="header"
       style={{
-        backgroundColor: isSwitched ? "#02286e" : "#05020D",
-        height: isSwitched ? "80px" : "inherit",
+        backgroundColor: isSwitched ? "#02286e" : "#05020D"
       }}
     >
       <Logo />
@@ -27,6 +26,7 @@ const Header: FC = () => {
       <div>
         <button
           className="year-container"
+          style={{ backgroundColor: isSwitched ? "#05020D" : "#02286e" }}
           onClick={() => dispatch(setYearFilter())}
         >
           The Latest

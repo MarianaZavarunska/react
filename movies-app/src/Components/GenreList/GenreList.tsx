@@ -16,7 +16,7 @@ const GenreList: FC = () => {
   }, []);
 
   return (
-    <div onMouseLeave={() => dispatch(toggleDropdown())}>
+    <div onMouseLeave={() => { if(toggleGenres) dispatch(toggleDropdown()) }}>
       <button
         className="genre-btn"
         onClick={() => dispatch(toggleDropdown())}

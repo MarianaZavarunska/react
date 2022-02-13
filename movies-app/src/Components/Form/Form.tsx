@@ -11,7 +11,7 @@ const Form: FC = () => {
   const { isSwitched } = useAppSelector((state) => state.moviesReducer);
 
   const onSubmitForm: SubmitHandler<{ movieName: string }> = (movieName) => {
-    dispatch(setMovieName(movieName));
+    if (movieName.movieName)  dispatch(setMovieName(movieName));
 
     reset();
   };

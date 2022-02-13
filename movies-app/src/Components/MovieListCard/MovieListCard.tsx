@@ -50,7 +50,7 @@ const MovieListCard: FC<{ movie: IMovie }> = ({ movie }) => {
         {movie.vote_average !== 0 && (
           <div>
             <span className="rating">IMDb: </span>
-            {movie.vote_average}
+            <span style={{color: movie.vote_average <= 6 ? 'red' : '' }}>{movie.vote_average}</span>
           </div>
         )}
         <div className="genre-badge">

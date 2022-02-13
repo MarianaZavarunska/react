@@ -23,8 +23,9 @@
 }
 
 .year-container {
-  background-color: transparent;
-  border: none;
-  color: var(--white-color);
   font-size: 1.1rem;
+  color: var(--white-color);
+  background-color: var(--secondary-color);
+  border-radius: 3px;
+  border: none;
 }

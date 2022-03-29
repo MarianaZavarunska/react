@@ -16,3 +16,4 @@ export * from "./UserInfo/UserInfo";
 export * from "./Logo/Logo";
 export * from "./ThemeSwitcher/ThemeSwitcher";
 export * from "./SocialMedia/SocialMedia";
+export * from "./ModalWindow/ModalWindow";

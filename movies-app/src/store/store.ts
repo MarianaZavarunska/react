@@ -6,6 +6,7 @@ import {
   moviesReducer,
   videoReducer,
   reviewReducer,
+  userReducer,
 } from "./slices";
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   videoReducer,
   imagesReducer,
   reviewReducer,
+  userReducer,
 });
 
 export const setupStore = () =>

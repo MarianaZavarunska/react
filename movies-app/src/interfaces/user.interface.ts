@@ -6,3 +6,12 @@ export interface IUser {
   email: string;
   password: string;
 }
+
+// export interface IUserFull{
+
+// }
+export interface IUserLogInResponse {
+  accessToken: string;
+  refreshToken: string;
+  user: IUser;
+}

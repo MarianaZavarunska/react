@@ -5,9 +5,9 @@ import "./UserInfo.css";
 import "./UserInfo.response.css";
 
 const UserInfo: FC = () => {
-  const { isSwitched, isLogin } = useAppSelector(
-    (state) => state.moviesReducer
-  );
+  const { isSwitched } = useAppSelector((state) => state.moviesReducer);
+
+  const { accessToken, user } = useAppSelector((state) => state.userReducer);
 
   return (
     <div
@@ -16,9 +16,11 @@ const UserInfo: FC = () => {
       <img
         src={require("../../images/female-user.png")}
         alt="user"
-        style={{ display: isLogin ? "block" : "none" }}
+        style={{ display: accessToken ? "block" : "none" }}
       />
-      <div style={{ display: isLogin ? "block" : "none" }}>Mariana</div>
+      <div style={{ display: accessToken ? "block" : "none" }}>
+        {user.firstName}
+      </div>
     </div>
   );
 };

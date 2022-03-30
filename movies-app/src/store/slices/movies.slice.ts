@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IMovie, IGenre, IQueryParams, IMoviesResponse } from "../../interfaces";
+import {
+  IMovie,
+  IGenre,
+  IQueryParams,
+  IMoviesResponse,
+} from "../../interfaces";
 import { moviesService } from "../../services";
 interface IMoviesState {
   movies: IMovie[];
@@ -9,7 +14,6 @@ interface IMoviesState {
   isSwitched: boolean;
   queryParams: IQueryParams;
   rating: number;
-  isLogin: boolean;
 }
 const initialState: IMoviesState = {
   movies: [],
@@ -22,10 +26,9 @@ const initialState: IMoviesState = {
     genreIds: [],
   },
   rating: 0,
-  isLogin: true,
 };
 
-export const getAllMovies = createAsyncThunk<IMoviesResponse,IQueryParams>(
+export const getAllMovies = createAsyncThunk<IMoviesResponse, IQueryParams>(
   "moviesSlice/getAllMovies",
   async (arg) => {
     const { currentPage } = arg;
@@ -124,10 +127,6 @@ const moviesSlice = createSlice({
       document.body.classList.toggle("on");
     },
 
-    setLogin: (state) => {
-      state.isLogin = !state.isLogin;
-    },
-
     clearFilter: (state) => {
       state.queryParams.movieName = "";
       state.queryParams.currentPage = 1;
@@ -174,6 +173,5 @@ export const {
   setGenresId,
   setGenresName,
   setSwitch,
-  setLogin,
   clearFilter,
 } = moviesSlice.actions;

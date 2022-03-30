@@ -1,15 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IUser, IUserLogInResponse } from "../../interfaces";
-import { User } from "../../models/User";
 import { authService } from "../../services";
 
 interface IUserState {
-  user: IUser;
+  user: IUser | undefined;
   isModalActive: boolean;
   //   isLogedIn: boolean;
   accessToken: string | undefined;
-  refreshToken: string;
+  refreshToken: string | undefined;
 }
 const initialState: IUserState = {
   user: {
@@ -26,26 +25,32 @@ const initialState: IUserState = {
   refreshToken: "",
 };
 
-export const userLogIn = createAsyncThunk<IUserLogInResponse, Partial<IUser>>(
-  "usersSlice/userLogIn",
-  async (user) => {
+export const userLogIn = createAsyncThunk<
+  IUserLogInResponse | undefined,
+  Partial<IUser>
+>("usersSlice/userLogIn", async (user) => {
+  try {
     const { data } = await authService.logIn(user);
     console.log("userLogIn", data);
     return data;
+  } catch (error) {
+    console.log(error);
   }
-);
+});
 
 const userSlice = createSlice({
   name: "usersSlice",
   initialState,
   reducers: {
     setLogInData: (state, action: PayloadAction<{ data: Partial<IUser> }>) => {
-      state.user.email = action.payload.data.email
-        ? action.payload.data.email
-        : "";
-      state.user.password = action.payload.data.password
-        ? action.payload.data.password
-        : "";
+      if (state.user) {
+        state.user.email = action.payload.data.email
+          ? action.payload.data.email
+          : "";
+        state.user.password = action.payload.data.password
+          ? action.payload.data.password
+          : "";
+      }
     },
 
     setModalActive: (state) => {
@@ -58,9 +63,9 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(userLogIn.fulfilled, (state, action) => {
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
-      state.user = action.payload.user;
+      state.accessToken = action.payload?.accessToken;
+      state.refreshToken = action.payload?.refreshToken;
+      state.user = action.payload?.user;
       console.log("fulfilled", state.accessToken);
     });
   },

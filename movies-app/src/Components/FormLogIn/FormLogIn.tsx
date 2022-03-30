@@ -11,16 +11,14 @@ const FormLogIn: FC = () => {
     email: string;
     password: string;
   }>();
-  //   const { accessToken } = useAppSelector((state) => state.userReducer);
+  const { status } = useAppSelector((state) => state.userReducer);
 
   const dispatch = useAppDispatch();
 
   const onSubmitForm = (data: Partial<IUser>) => {
     dispatch(userLogIn(data))
       .then((response) => {
-        console.log("my response", response);
-
-        if (response) dispatch(setModalActive());
+        if (status === 200) dispatch(setModalActive());
       })
       .catch((err: Error) => console.log(err));
 

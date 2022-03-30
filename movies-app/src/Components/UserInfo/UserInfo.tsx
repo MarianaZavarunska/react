@@ -19,7 +19,7 @@ const UserInfo: FC = () => {
         style={{ display: accessToken ? "block" : "none" }}
       />
       <div style={{ display: accessToken ? "block" : "none" }}>
-        {user?.firstName}
+        {user.firstName}
       </div>
     </div>
   );

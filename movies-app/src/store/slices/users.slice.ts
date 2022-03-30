@@ -4,11 +4,12 @@ import { IUser, IUserLogInResponse } from "../../interfaces";
 import { authService } from "../../services";
 
 interface IUserState {
-  user: IUser | undefined;
+  user: IUser;
   isModalActive: boolean;
   //   isLogedIn: boolean;
   accessToken: string | undefined;
   refreshToken: string | undefined;
+  status: number;
 }
 const initialState: IUserState = {
   user: {
@@ -23,20 +24,21 @@ const initialState: IUserState = {
   //   isLogedIn: false,
   accessToken: undefined,
   refreshToken: "",
+  status: 200,
 };
 
-export const userLogIn = createAsyncThunk<
-  IUserLogInResponse | undefined,
-  Partial<IUser>
->("usersSlice/userLogIn", async (user) => {
-  try {
-    const { data } = await authService.logIn(user);
-    console.log("userLogIn", data);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const userLogIn = createAsyncThunk<any, Partial<IUser>>(
+  "usersSlice/userLogIn",
+  async (user) => {
+    try {
+      const { data, status } = await authService.logIn(user);
+
+      return { data, status };
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 const userSlice = createSlice({
   name: "usersSlice",
@@ -63,10 +65,13 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(userLogIn.fulfilled, (state, action) => {
-      state.accessToken = action.payload?.accessToken;
-      state.refreshToken = action.payload?.refreshToken;
-      state.user = action.payload?.user;
-      console.log("fulfilled", state.accessToken);
+      state.accessToken = action.payload.data.accessToken;
+      state.refreshToken = action.payload.data.refreshToken;
+      state.user = action.payload.data.user;
+      state.status = action.payload.status;
+
+      console.log("===================status===================");
+      console.log(state.status);
     });
   },
 });

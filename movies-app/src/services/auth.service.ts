@@ -1,11 +1,28 @@
-import axios from "axios";
+import { AxiosResponse } from "axios";
 
-import { backURL, mainBackURL } from "../constants/backendUrls";
+import { backURL} from "../constants/backendUrls";
+import axiosTepmlate from "../http/axios";
 import { IUser, IUserLogInResponse } from "../interfaces";
 
-const authService = {
-  logIn: (data: Partial<IUser>) =>
-    axios.post(`${mainBackURL}${backURL.login}`, data),
-};
+class AuthService {
+  public async login(
+    data: Partial<IUser>
+  ): Promise<AxiosResponse<IUserLogInResponse>> {
+    return axiosTepmlate.post<IUserLogInResponse>(`${backURL.login}`, data);
+  }
 
-export { authService };
+  public async registartion(
+    data: IUser
+  ): Promise<AxiosResponse<IUserLogInResponse>> {
+    return axiosTepmlate.post<IUserLogInResponse>(
+      `${backURL.registartion}`,
+      data
+    );
+  }
+
+  public async logout(): Promise<string> {
+    return axiosTepmlate.post(`${backURL.logout}`);
+  }
+}
+
+export const authService = new AuthService();

@@ -7,10 +7,13 @@ export interface IUser {
   password: string;
 }
 
-// export interface IUserFull{
-
-// }
 export interface IUserLogInResponse {
+  userData: IUserData | undefined;
+  status: number;
+  error: string | undefined;
+}
+
+export interface IUserData{
   accessToken: string;
   refreshToken: string;
   user: IUser;

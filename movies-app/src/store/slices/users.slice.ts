@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IUser, IUserLogInResponse } from "../../interfaces";
+import { IUser, IUserLogInResponse} from "../../interfaces";
 import { authService } from "../../services";
 
 interface IUserState {
-  user: IUser;
+  user: IUser | undefined;
   isModalActive: boolean;
   //   isLogedIn: boolean;
   accessToken: string | undefined;
   refreshToken: string | undefined;
-  status: number;
+  status: number | undefined;
 }
 const initialState: IUserState = {
   user: {
@@ -27,18 +27,40 @@ const initialState: IUserState = {
   status: 200,
 };
 
-export const userLogIn = createAsyncThunk<any, Partial<IUser>>(
-  "usersSlice/userLogIn",
+export const userLogIn = createAsyncThunk<IUserLogInResponse, Partial<IUser>>(
+  "usersSlice/userLogIn", 
   async (user) => {
-    try {
-      const { data, status } = await authService.logIn(user);
-
-      return { data, status };
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+    const { data } = await authService.login(user);
+  
+    return data;
+  } catch (error) {
+    console.log(error);
+    return { userData: undefined, status: 401, error: `${error}` }
   }
-);
+});
+
+export const userRegistartion = createAsyncThunk<IUserLogInResponse, IUser>("usersSlice/userRegistartion", 
+async (user: IUser) => {
+  try {
+    const { data } = await authService.registartion(user);
+  
+    return data;
+  } catch (error) {
+    console.log(error);
+    return { userData: undefined, status: 401, error: `${error}` }
+  }
+});
+
+export const userLogOut = createAsyncThunk ("usersSlice/userLogOut", async () => {
+  try {
+    const response = await authService.logout();
+  
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 const userSlice = createSlice({
   name: "usersSlice",
@@ -65,13 +87,22 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(userLogIn.fulfilled, (state, action) => {
-      state.accessToken = action.payload.data.accessToken;
-      state.refreshToken = action.payload.data.refreshToken;
-      state.user = action.payload.data.user;
-      state.status = action.payload.status;
+      state.accessToken = action.payload?.userData?.accessToken;
+      state.refreshToken = action.payload?.userData?.refreshToken;
+      state.user = action.payload?.userData?.user;
+      state.status = action.payload?.status;
+    });
 
-      console.log("===================status===================");
-      console.log(state.status);
+    builder.addCase(userRegistartion.fulfilled, (state, action) => {
+      state.accessToken = action.payload?.userData?.accessToken;
+      state.refreshToken = action.payload?.userData?.refreshToken;
+      state.user = action.payload?.userData?.user;
+      state.status = action.payload?.status;
+    });
+
+    builder.addCase(userLogOut.fulfilled, (state, action) => {
+      state.accessToken = undefined;
+      state.refreshToken = undefined;
     });
   },
 });

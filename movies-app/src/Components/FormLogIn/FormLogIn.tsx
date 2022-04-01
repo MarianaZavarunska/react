@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { IUser, IUserLogInResponse } from "../../interfaces";
+import { IUser, IUserLogInResponse, IUserData } from "../../interfaces";
 import { setLogInData, setModalActive, userLogIn } from "../../store/slices";
 import "./FormLogIn.css";
 
@@ -11,17 +11,15 @@ const FormLogIn: FC = () => {
     email: string;
     password: string;
   }>();
-  const { status } = useAppSelector((state) => state.userReducer);
+  const { accessToken } = useAppSelector((state) => state.userReducer);
 
   const dispatch = useAppDispatch();
 
-  const onSubmitForm = (data: Partial<IUser>) => {
-    dispatch(userLogIn(data))
-      .then((response) => {
-        if (status === 200) dispatch(setModalActive());
-      })
-      .catch((err: Error) => console.log(err));
+  const onSubmitForm = async (data: Partial<IUser>) => {
 
+    let res = await dispatch(userLogIn(data));
+    
+    if((res.payload as Partial<IUserData>)?.accessToken) dispatch(setModalActive());
     reset();
   };
 
@@ -37,6 +35,7 @@ const FormLogIn: FC = () => {
           <input type="text" {...register("password")} />
         </div>
         <button type="submit">Log In</button>
+        {accessToken}
       </form>
     </div>
   );

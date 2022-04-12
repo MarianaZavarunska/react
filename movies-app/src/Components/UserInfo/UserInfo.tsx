@@ -14,7 +14,8 @@ const UserInfo: FC = () => {
       className={isSwitched ? "user-info-container on" : "user-info-container"}
     >
       <img
-        src={require("../../images/female-user.png")}
+        // src={require("../../images/female-user.png")}
+        src={user?.avatar}
         alt="user"
         style={{ display: accessToken ? "block" : "none" }}
       />

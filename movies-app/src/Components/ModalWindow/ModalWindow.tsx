@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { setModalActive } from "../../store/slices";
+import { setModalActive, setRegisterActive} from "../../store/slices";
 
 import "./ModalWindow.css";
 
@@ -11,10 +11,15 @@ const ModalWindow: FC = ({ children }) => {
   return (
     <div
       className={isModalActive ? "modal active" : "modal"}
-      onClick={() => dispatch(setModalActive())}
+      onClick={() => {
+        dispatch(setModalActive({ isActive: false}))
+        dispatch(setRegisterActive({ isActive: false }));
+
+      }
+      }
     >
       <div
-        className={isModalActive ? "modal-content active" : "modal-content"}
+        className={isModalActive? "modal-content active" : "modal-content"}
         onClick={(event) => event.stopPropagation()}
       >
         {children}

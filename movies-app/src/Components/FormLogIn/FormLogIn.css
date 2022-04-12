@@ -20,7 +20,12 @@ form.logIn-form {
   border: 1px solid var(--primary-color);
   border-radius: 5px;
 }
-.logIn-form > button {
+.btn-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-container > button {
   background-color: var(--secondary-color);
   color: var(--white-color);
   text-transform: uppercase;
@@ -28,3 +33,10 @@ form.logIn-form {
   padding: 5px 10px;
   margin: 5px;
 }
+
+.error-container{
+  font-size: 0.9rem;
+  color: red;
+}
+
+

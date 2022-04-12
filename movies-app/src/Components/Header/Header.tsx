@@ -2,8 +2,9 @@ import { FC } from "react";
 
 import { Form, GenreList, UserInfo, Logo, ThemeSwitcher } from "..";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { setModalActive, setOutToken, setYearFilter } from "../../store/slices";
+import { setLogInActive, setModalActive, setOutToken, setRegisterActive, setYearFilter } from "../../store/slices";
 import FormLogIn from "../FormLogIn/FormLogIn";
+import { FormRegister } from "../FormRegister/FormRegister";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import "./Header.css";
 import "./Header.responsive.css";
@@ -11,7 +12,7 @@ import "./Header.responsive.css";
 const Header: FC = () => {
   const dispatch = useAppDispatch();
   const { isSwitched } = useAppSelector((state) => state.moviesReducer);
-  // const { isLogedIn } = useAppSelector((state) => state.userReducer);
+  const { isRegisterActive, isLogInActive} = useAppSelector((state) => state.userReducer);
   const { accessToken } = useAppSelector((state) => state.userReducer);
 
   return (
@@ -40,19 +41,24 @@ const Header: FC = () => {
       <UserInfo />
 
       <button
-        className="sign-btn"
+        className="log-btn"
         style={{ backgroundColor: isSwitched ? "#05020D" : "#02286e" }}
         onClick={() => {
-          accessToken ? dispatch(setOutToken()) : dispatch(setModalActive());
-          // if (!isLogedIn) dispatch(setModalActive());
-          // if (isLogedIn) dispatch(setLogin());
+          if (accessToken) dispatch(setOutToken());
+          else {
+            dispatch(setModalActive({ isActive: true}));
+            dispatch(setLogInActive({ isActive: true }));
+            dispatch(setRegisterActive({ isActive: false }));
+          }
         }}
       >
         {accessToken ? "Log Out" : "Log In"}
       </button>
+    
       <ModalWindow>
-        <FormLogIn />
+        {isRegisterActive ? <FormRegister/> :  isLogInActive ? <FormLogIn /> : null}
       </ModalWindow>
+    
     </div>
   );
 };

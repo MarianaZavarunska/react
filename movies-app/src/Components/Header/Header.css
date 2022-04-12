@@ -10,7 +10,8 @@
   padding: 10px;
 }
 
-.sign-btn {
+.sign-btn,
+.log-btn {
   background-color: var(--secondary-color);
   color: var(--white-color);
   font-size: 0.9rem;

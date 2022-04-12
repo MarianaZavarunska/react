@@ -7,6 +7,7 @@ export class User implements IUser {
   phone: string;
   email: string;
   password: string;
+  avatar: string | undefined;
 
   constructor() {
     this.firstName = "";
@@ -15,5 +16,6 @@ export class User implements IUser {
     this.phone = "";
     this.email = "";
     this.password = "";
+    this.avatar = "";
   }
 }

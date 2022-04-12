@@ -5,6 +5,7 @@ export interface IUser {
   phone: string;
   email: string;
   password: string;
+  avatar: string | undefined;
 }
 
 export interface IUserLogInResponse {

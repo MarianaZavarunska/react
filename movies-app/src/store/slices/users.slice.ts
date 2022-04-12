@@ -6,7 +6,8 @@ import { authService } from "../../services";
 interface IUserState {
   user: IUser | undefined;
   isModalActive: boolean;
-  //   isLogedIn: boolean;
+  isRegisterActive: boolean;
+  isLogInActive: boolean;
   accessToken: string | undefined;
   refreshToken: string | undefined;
   status: number | undefined;
@@ -19,9 +20,11 @@ const initialState: IUserState = {
     phone: "",
     email: "",
     password: "",
+    avatar: "",
   },
   isModalActive: false,
-  //   isLogedIn: false,
+  isRegisterActive: false,
+  isLogInActive: false,
   accessToken: undefined,
   refreshToken: "",
   status: 200,
@@ -31,12 +34,13 @@ export const userLogIn = createAsyncThunk<IUserLogInResponse, Partial<IUser>>(
   "usersSlice/userLogIn", 
   async (user) => {
   try {
-    const { data } = await authService.login(user);
+    const res = await authService.login(user);
+    console.log('========login==========', res, res.data);
   
-    return data;
+    return { userData: res.data, status: 200, error: undefined };
   } catch (error) {
     console.log(error);
-    return { userData: undefined, status: 401, error: `${error}` }
+    return { userData: undefined, status: 401, error: `${error}`, accessToken: undefined }
   }
 });
 
@@ -45,10 +49,10 @@ async (user: IUser) => {
   try {
     const { data } = await authService.registartion(user);
   
-    return data;
+    return { userData: data, status: 200, error: undefined };
   } catch (error) {
     console.log(error);
-    return { userData: undefined, status: 401, error: `${error}` }
+    return { userData: undefined, status: 401, error: `${error}`, accessToken: undefined }
   }
 });
 
@@ -77,16 +81,27 @@ const userSlice = createSlice({
       }
     },
 
-    setModalActive: (state) => {
-      state.isModalActive = !state.isModalActive;
+    setModalActive: (state, action: PayloadAction<{ isActive: boolean }>) => {
+      state.isModalActive = action.payload.isActive;
+    },
+
+    setRegisterActive: (state, action: PayloadAction<{ isActive: boolean }>) => {
+      state.isRegisterActive = action.payload.isActive;
+    },
+    setLogInActive: (state, action: PayloadAction<{ isActive: boolean }>) => {
+      state.isLogInActive =  action.payload.isActive;
     },
 
     setOutToken: (state) => {
       state.accessToken = undefined;
-    },
+    }
+    //   setUserName: (state, action: PayloadAction<{firstName: string}>) => {
+    //      if(state.user) state.user.firstName = action.payload.firstName;
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(userLogIn.fulfilled, (state, action) => {
+      
       state.accessToken = action.payload?.userData?.accessToken;
       state.refreshToken = action.payload?.userData?.refreshToken;
       state.user = action.payload?.userData?.user;
@@ -111,4 +126,4 @@ const userReducer = userSlice.reducer;
 
 export { userReducer };
 
-export const { setLogInData, setModalActive, setOutToken } = userSlice.actions;
+export const { setLogInData, setModalActive, setRegisterActive, setLogInActive, setOutToken } = userSlice.actions;

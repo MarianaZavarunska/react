@@ -22,7 +22,7 @@ const FormRegister: FC = () => {
                 dispatch(setModalActive({ isActive: false }));
             } 
         
-            // reset();
+            reset();
         }
    
 

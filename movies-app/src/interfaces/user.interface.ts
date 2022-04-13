@@ -1,3 +1,4 @@
+//TODO: rename to avatar to avatarURL
 export interface IUser {
   firstName: string;
   lastName: string;
@@ -5,7 +6,13 @@ export interface IUser {
   phone: string;
   email: string;
   password: string;
-  avatar: string | undefined;
+  avatar?: string;
+}
+
+//TODO: rename to IUserRegisterModel
+export interface IUserRegisterSubmit extends IUser
+{ 
+  avatarFile?: FileList
 }
 
 export interface IUserLogInResponse {

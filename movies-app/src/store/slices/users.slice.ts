@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IUser, IUserLogInResponse} from "../../interfaces";
+import { IUser, IUserLogInResponse, IUserRegisterSubmit} from "../../interfaces";
 import { authService } from "../../services";
 
 interface IUserState {
@@ -44,7 +44,7 @@ export const userLogIn = createAsyncThunk<IUserLogInResponse, Partial<IUser>>(
   }
 });
 
-export const userRegistartion = createAsyncThunk<IUserLogInResponse, IUser>("usersSlice/userRegistartion", 
+export const userRegistartion = createAsyncThunk<IUserLogInResponse, IUserRegisterSubmit>("usersSlice/userRegistartion", 
 async (user: IUser) => {
   try {
     const { data } = await authService.registartion(user);

@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 
 import { backURL} from "../constants/backendUrls";
 import axiosTepmlate from "../http/axios";
-import { IUser, IUserData } from "../interfaces";
+import { IUser, IUserData, IUserRegisterSubmit } from "../interfaces";
 
 class AuthService {
   public async login(
@@ -12,10 +12,25 @@ class AuthService {
   }
 
   public async registartion(
-    data: IUser
+    data: IUserRegisterSubmit
   ): Promise<AxiosResponse<IUserData>> {
+    // Create an object of formData
+    const formData = new FormData();
+
+    for (const [key, value] of Object.entries(data)) {
+      if (key === 'avatarFile') continue;
+
+      formData.set(key, value)
+    }
+    data.avatarFile &&
+    formData.append(
+      "avatarFile",
+      data.avatarFile[0],
+      data.avatarFile[0].name
+      );
+    
     return axiosTepmlate.post<IUserData>(
-      `${backURL.registartion}`, data);
+      `${backURL.registartion}`, formData);
   }
 
   public async logout(): Promise<string> {

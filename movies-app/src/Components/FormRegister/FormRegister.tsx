@@ -2,16 +2,16 @@ import React, {FC} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 
 import {useAppDispatch} from "../../hooks";
-import {IUser, IUserLogInResponse} from "../../interfaces";
+import {IUser, IUserLogInResponse, IUserRegisterSubmit} from "../../interfaces";
 import { setModalActive, setRegisterActive, userRegistartion } from '../../store/slices';
 import "./FormRegister.css";
 
 
 const FormRegister: FC = () => {
-   const {register,handleSubmit,reset}= useForm<IUser>();
+   const {register,handleSubmit,reset}= useForm<IUserRegisterSubmit>();
    const dispatch = useAppDispatch();
 
-    const onSubmitForm: SubmitHandler<IUser> =
+    const onSubmitForm: SubmitHandler<IUserRegisterSubmit> =
         async (data: IUser) => {
          
             let res = await dispatch(userRegistartion(data));
@@ -22,7 +22,7 @@ const FormRegister: FC = () => {
                 dispatch(setModalActive({ isActive: false }));
             } 
         
-            reset();
+            // reset();
         }
    
 
@@ -59,7 +59,7 @@ const FormRegister: FC = () => {
                 </div>
                 <div>
                     <label>Photo </label> 
-                    <input type="file" {...register("avatar")}/>
+                    <input type="file" {...register("avatarFile")}/>
                 </div>
                
               
